@@ -12,4 +12,4 @@ This codespace.... (WIP)
 
 
 Ready to learn more about LLM & Gen AI Observability? 
-## [Yes, let's start the enablement in Codespace!](https://dynatrace-wwse.github.io/enablement-gen-ai-llm-observability)
+## [Yes, let's start the enablement!](https://dynatrace-wwse.github.io/enablement-gen-ai-llm-observability)
