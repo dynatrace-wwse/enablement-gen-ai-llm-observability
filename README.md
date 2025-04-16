@@ -1,13 +1,15 @@
-# Enablement Codespaces Template 
+# Enablement Gen AI & LLM Observability
 
-This is a template so you as a professor can create fun and interesting enablements in no time.
+Dynatrace Gen AI & LLM observability provides complete visibility into all aspects of LLMs, including applications, prompts, data sources, and outputs for LLMs' correct, consistent operation at all times across all domains. The Dynatrace Platform can:
 
-In this README you should add a brief description of the project. What will the student learn, which technologies and/or solutions. 
+- Seamlessly integrate across the full AI application stack
+- Help reduce the cost and improve the performance of your AI and LLM stack
+- Build trust in LLM inputs and outputs
+- Explain and trace back your AI-powered application outputs
+- Reduce compliance risk for your Generative AI application
+        
+This codespace.... (WIP)
 
-<p align="center">
-<img src="docs/img/dt_professors.png" alt="Alt text" width="500"/>
-</p>
 
-Ready to learn how to create enablements in codespaces? 
-## [👨‍🏫 Learn how to create enablements in Codespaces!](https://dynatrace-wwse.github.io/enablement-codespaces-template)
-
+Ready to learn more about LLM & Gen AI Observability? 
+## [Yes, let's start the enablement in Codespace!](https://dynatrace-wwse.github.io/enablement-gen-ai-llm-observability)
