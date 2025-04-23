@@ -74,7 +74,7 @@ otel_tracer = trace.get_tracer("travel-advisor")
 
 # Initialize OpenLLMetry
 Traceloop.init(
-    app_name="travel-advisor",
+    app_name="ai-travel-advisor",
     api_endpoint=OTEL_ENDPOINT,
     disable_batch=True, # This is recomended for testing but NOT for production
     headers=headers,
