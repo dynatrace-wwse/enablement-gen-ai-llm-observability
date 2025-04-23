@@ -491,18 +491,34 @@ deployAITravelAdvisorApp(){
   printInfoSection "Deploying AI Travel Advisor App"
 
   kubectl create ns ai-travel-advisor
-
-  echo kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_TENANT/api/v2/otlp
-
-  SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_TENANT/api/v2/otlp
 
   # Start OLLAMA
-  echo kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
+  printInfoSection "Deploying our LLM => Ollama"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
+  printInfoSection "Waiting for Ollama to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "Ollama is ready"
+
+  # Start Weaviate
+  printInfoSection "Deploying our VectorDB => Weaviate"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/weaviate.yaml
+  printInfoSection "Waiting for Weaviate to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "Weaviate is ready"
+
+
+  # Start AI Travel Advisor
+  printInfoSection "Deploying AI App => AI Travel Advisor"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ai-travel-advisor.yaml
+  printInfoSection "Waiting for AI Travel Advisor to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "AI Travel Advisoraviate is ready"
 
   # Define the NodePort to expose the app from the Cluster
-  #kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
+  kubectl patch service ai-travel-advisor --namespace=ai-travel-advisor --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
 
-  printInfoSection "TodoApp is available via NodePort=30100"
+  printInfoSection "AI Travel Advisor is available via NodePort=30100"
 
 }
 
