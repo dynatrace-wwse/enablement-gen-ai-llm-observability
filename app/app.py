@@ -60,7 +60,9 @@ WEAVIATE_ENDPOINT = os.environ.get("WEAVIATE_ENDPOINT", "localhost")
 print(f"{Fore.GREEN} Connecting to Ollama ({AI_MODEL}) LLM: {OLLAMA_ENDPOINT} {Fore.RESET}")
 print(f"{Fore.GREEN} Connecting to Weaviate VectorDB: {WEAVIATE_ENDPOINT} {Fore.RESET}")
 
-
+ollama_client = ollama.Client(
+    host=OLLAMA_ENDPOINT,
+)
 
 MAX_PROMPT_LENGTH = 50
 
@@ -175,7 +177,7 @@ def submit_completion(framework: str, prompt: str):
 @task(name="ollama_chat")
 def llm_chat(prompt: str):
     prompt = f"Give travel advise in a paragraph of max 50 words about {prompt}"
-    res = ollama.generate(model=AI_MODEL, prompt=prompt)
+    res = ollama_client.generate(model=AI_MODEL, prompt=prompt)
     return {"message": res.get("response")}
 
 
