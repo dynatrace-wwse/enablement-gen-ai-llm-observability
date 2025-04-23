@@ -17,6 +17,7 @@ import uvicorn
 from opentelemetry import trace
 from traceloop.sdk import Traceloop
 from traceloop.sdk.decorators import workflow, task
+from colorama import Fore
 
 import weaviate
 import weaviate.classes as wvc
@@ -42,6 +43,10 @@ def read_secret(secret: str):
         print(e)
         return ""
 
+# By default we use orca-mini:3b because it's small enough to run easily on codespace
+# Make sure if you change this, you need to also change the deployment script
+AI_MODEL = os.environ.get("AI_MODEL", "orca-mini:3b")
+AI_EMBEDDING_MODEL = os.environ.get("AI_EMBEDDING_MODEL", "orca-mini:3b")
 
 # Clean up endpoint making sure it is correctly follow the format:
 # https://<YOUR_ENV>.live.dynatrace.com/api/v2/otlp
@@ -52,11 +57,11 @@ if OTEL_ENDPOINT.endswith("/v1/traces"):
 ## Configuration of OLLAMA & Weaviate
 OLLAMA_ENDPOINT = os.environ.get("OLLAMA_ENDPOINT", "http://localhost:11434")
 WEAVIATE_ENDPOINT = os.environ.get("WEAVIATE_ENDPOINT", "localhost")
+print(f"{Fore.GREEN} Connecting to Ollama ({AI_MODEL}) LLM: {OLLAMA_ENDPOINT} {Fore.RESET}")
+print(f"{Fore.GREEN} Connecting to Weaviate VectorDB: {WEAVIATE_ENDPOINT} {Fore.RESET}")
 
-# By default we use orca-mini:3b because it's small enough to run easily on codespace
-# Make sure if you change this, you need to also change the deployment script
-AI_MODEL = os.environ.get("AI_MODEL", "orca-mini:3b")
-AI_EMBEDDING_MODEL = os.environ.get("AI_EMBEDDING_MODEL", "orca-mini:3b")
+
+
 MAX_PROMPT_LENGTH = 50
 
 # Initialise the logger
