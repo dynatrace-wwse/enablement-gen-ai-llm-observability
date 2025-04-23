@@ -29,6 +29,8 @@ Your Codespace has now deployed the following resources:
   that will be used later in the demo.
 
 - After a couple of minutes, you'll see this screen in your codespaces terminal. It contains the links to the local expose labguide and the UI of the application which we will be doing our Hands-On training.
+
+
 ![Codespaces finish](img/codespaces_finish.png)
 
 
@@ -46,14 +48,14 @@ The client `kubectl` and `k9s`are configured so you can navigate in your local K
 ![k9s](img/k9s.png)
 
 ### Exposing the apps to the public
-The apps MKdocs and TODO app are being exposed in the devcontainer to your localhost. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.
+The apps MKdocs and AI Travel Advisor app are being exposed in the devcontainer to your localhost. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.
 
 
 ## 5. Troubleshooting
 
 
 ### Exposing the App
-The todo app is being exposed via `kubectl port-forward ...` if the container is stopped and started again or if you delete/recicle the pod the port-forwarding process might crash. You can easily see what is being exposed by typing the function `showOpenPorts` 
+The AI Travel Advisor app is being exposed via `kubectl port-forward ...` if the container is stopped and started again or if you delete/recicle the pod the port-forwarding process might crash. You can easily see what is being exposed by typing the function `showOpenPorts` 
 
 ```bash
 showOpenPorts(){
