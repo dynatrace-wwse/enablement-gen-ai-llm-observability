@@ -36,7 +36,7 @@ spec:
     name: ollama
   ports:
     - port: 80
-      name: web
+      name: web 
       targetPort: 11434
       protocol: TCP
     - port: 11434
