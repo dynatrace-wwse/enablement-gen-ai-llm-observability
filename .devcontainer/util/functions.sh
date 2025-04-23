@@ -524,7 +524,7 @@ deployAITravelAdvisorApp(){
 
 exposeApp(){
   printInfo "Exposing App in your dev.container"
-  nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
+  nohup kubectl port-forward service/ai-travel-advisor 8080:8080  -n ai-travel-advisor --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 
 

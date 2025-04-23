@@ -1,22 +1,21 @@
 --8<-- "snippets/3-codespaces.js"
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-wwse/enablement-live-debugger-bug-hunting){target="_blank"}
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-wwse/enablement-gen-ai-llm-observability){target="_blank"}
 
-TODO: Sizing & secrets you need
+
 ## 1.1 Codespaces configuration
 !!! tip "Branch, Machine sizing & secrets"
     - Branch
         - select the **main** branch
     - Machine sizing
-        - As a machine type select **2-core**
+        - As a machine type select **4-core**
     - Secrets (enter your credentials within the following variables)
         - DT_TENANT
-        - DT_OPERATOR_TOKEN
-        - DT_INGEST_TOKEN
+        - DT_TOKEN
 
 
 ## 2. While the Codespace is set-up for you, learn powerful usecases with Dynatrace
-We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes ([kind](https://kind.sigs.k8s.io/){target="_blank"}) cluster monitored by Dynatrace will be configured and in it a sample application, the TODO app will be deployed. To make your experience best, we are also installing and configuring tools like:
+We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes ([kind](https://kind.sigs.k8s.io/){target="_blank"}) cluster monitored by Dynatrace will be configured and in it a sample AI application, the AI Travel Advisor app will be deployed. To make your experience best, we are also installing and configuring tools like:
 
 **k9s kubectl helm node jq python3 gh**
 
@@ -62,14 +61,14 @@ showOpenPorts(){
 }
 ```
 
-and to expose the TODO app, type `exposeTodoApp`, 
+and to expose the AI Travel Advisor app, type `exposeApp`, 
 
 ```bash
-exposeTodoApp(){
-  printInfo "Exposing Todo App in your dev.container"
-  nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
+exposeApp(){
+  printInfo "Exposing App in your dev.container"
+  nohup kubectl port-forward service/ai-travel-advisor 8080:8080  -n ai-travel-advisor --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 ```
 <div class="grid cards" markdown>
-- [Let's start our Bug hunting quest:octicons-arrow-right-24:](4-content.md)
+- [Let's start our AI journey:octicons-arrow-right-24:](4-content.md)
 </div>

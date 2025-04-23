@@ -20,10 +20,9 @@ To create a Dynatrace token
     -  **Read metrics** (`metrics.read`)
     -  **Write settings** (`settings.write`)
 6.  Select **Generate token**.
-7.  Copy the generated token to the clipboard. Store the token in a password manager for future use.
+7.  Copy the generated token to the clipboard and be ready to use it in the next step.
    
 !!! warning "You can only access your token once upon creation. You can't reveal it afterward."
-
 
 
 
