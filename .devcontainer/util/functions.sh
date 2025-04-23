@@ -492,6 +492,8 @@ deployAITravelAdvisorApp(){
 
   kubectl create ns ai-travel-advisor
 
+  echo kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_ENDPOINT/api/v2/otlp
+
   SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
   # Start OLLAMA
