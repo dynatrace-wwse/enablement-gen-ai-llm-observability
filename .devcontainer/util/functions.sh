@@ -487,19 +487,18 @@ deployOperatorViaHelm(){
 }
 
 
-deployTodoApp(){
-  printInfoSection "Deploying Todo App"
+deployAITravelAdvisorApp(){
+  printInfoSection "Deploying AI Travel Advisor App"
 
-  kubectl create ns todoapp
+  kubectl create ns ai-travel-advisor
 
-  # Create deployment of todoApp
-  kubectl -n todoapp create deploy todoapp --image=shinojosa/todoapp:1.0.0
+  SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-  # Expose deployment of todoApp with a Service
-  kubectl -n todoapp expose deployment todoapp --type=NodePort --port=8080 --name todoapp 
+  # Start OLLAMA
+  echo kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
 
   # Define the NodePort to expose the app from the Cluster
-  kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
+  #kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
 
   printInfoSection "TodoApp is available via NodePort=30100"
 

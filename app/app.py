@@ -18,7 +18,6 @@ from opentelemetry import trace
 from traceloop.sdk import Traceloop
 from traceloop.sdk.decorators import workflow, task
 
-# TODO: clean import
 import weaviate
 import weaviate.classes as wvc
 from langchain_weaviate.vectorstores import WeaviateVectorStore
