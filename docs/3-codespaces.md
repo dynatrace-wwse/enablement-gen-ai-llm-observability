@@ -71,6 +71,8 @@ exposeApp(){
   nohup kubectl port-forward service/ai-travel-advisor 8080:8080  -n ai-travel-advisor --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 ```
+
+
 <div class="grid cards" markdown>
 - [Let's start our AI journey:octicons-arrow-right-24:](4-content.md)
 </div>

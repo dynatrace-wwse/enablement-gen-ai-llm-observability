@@ -24,8 +24,6 @@ To create a Dynatrace token
    
 !!! warning "You can only access your token once upon creation. You can't reveal it afterward."
 
-
-
 !!! tip "Let's launch the Codespace"
     Now we are ready to launch the Codespace!
 
