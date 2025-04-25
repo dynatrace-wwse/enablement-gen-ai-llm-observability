@@ -8,9 +8,10 @@ nav:
   - '4. Content': 4-content.md
   - '5. Direct Chat': 5-direct.md
   - '6. RAG': 6-rag.md
-  - '5. Cleanup': cleanup.md
-  - '6. Resources': resources.md
-  - "7. What's next?": whats-next.md
+  - '7. Agentic': 7-agentic.md
+  - '8. Cleanup': cleanup.md
+  - '9. Resources': resources.md
+  - "10. What's next?": whats-next.md
 theme:
   name: material
   custom_dir: docs/overrides

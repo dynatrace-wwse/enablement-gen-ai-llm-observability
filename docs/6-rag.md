@@ -47,5 +47,5 @@ Since we don't have wrong information around Paris, now the LLM should produce a
 !!! bug "There is a bug with OpenLLMetry and Weaviate for which we don't have spans for it."
 
 <div class="grid cards" markdown>
-- [Let's interact with the AI:octicons-arrow-right-24:](6-rag.md)
+- [Let's explore another way of using AI:octicons-arrow-right-24:](7-agentic.md)
 </div>

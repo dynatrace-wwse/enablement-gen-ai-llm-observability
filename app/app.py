@@ -82,6 +82,21 @@ headers = {"Authorization": f"Api-Token {TOKEN}"}
 # Use the OTel API to instanciate a tracer to generate Spans
 otel_tracer = trace.get_tracer("travel-advisor")
 
+## force weaviate instrumentor
+from opentelemetry.instrumentation.weaviate import WeaviateInstrumentor
+from opentelemetry.instrumentation import weaviate as w
+w.WRAPPED_METHODS = [
+    {
+        "module": "weaviate.collections.queries.hybrid.executors",
+        "object": "_HybridQueryExecutor",
+        "method": "hybrid",
+        "span_name": "db.weaviate.collections.query.hybrid",
+    },
+]
+instrumentor = WeaviateInstrumentor()
+if not instrumentor.is_instrumented_by_opentelemetry:
+    instrumentor.instrument()
+
 # Initialize OpenLLMetry
 Traceloop.init(
     app_name="ai-travel-advisor",
