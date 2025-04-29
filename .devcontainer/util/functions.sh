@@ -487,27 +487,46 @@ deployOperatorViaHelm(){
 }
 
 
-deployTodoApp(){
-  printInfoSection "Deploying Todo App"
+deployAITravelAdvisorApp(){
+  printInfoSection "Deploying AI Travel Advisor App"
 
-  kubectl create ns todoapp
+  kubectl create ns ai-travel-advisor
+  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_TENANT/api/v2/otlp
 
-  # Create deployment of todoApp
-  kubectl -n todoapp create deploy todoapp --image=shinojosa/todoapp:1.0.0
+  # Start OLLAMA
+  printInfoSection "Deploying our LLM => Ollama"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
+  printInfoSection "Waiting for Ollama to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "Ollama is ready"
 
-  # Expose deployment of todoApp with a Service
-  kubectl -n todoapp expose deployment todoapp --type=NodePort --port=8080 --name todoapp 
+  # Start Weaviate
+  printInfoSection "Deploying our VectorDB => Weaviate"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/weaviate.yaml
+  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
+  printInfoSection "Waiting for Weaviate to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "Weaviate is ready"
+
+
+  # Start AI Travel Advisor
+  printInfoSection "Deploying AI App => AI Travel Advisor"
+  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ai-travel-advisor.yaml
+  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
+  printInfoSection "Waiting for AI Travel Advisor to get ready"
+  kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
+  printInfoSection "AI Travel Advisoraviate is ready"
 
   # Define the NodePort to expose the app from the Cluster
-  kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
+  kubectl patch service ai-travel-advisor --namespace=ai-travel-advisor --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
 
-  printInfoSection "TodoApp is available via NodePort=30100"
+  printInfoSection "AI Travel Advisor is available via NodePort=30100"
 
 }
 
 exposeApp(){
   printInfo "Exposing App in your dev.container"
-  nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
+  nohup kubectl port-forward service/ai-travel-advisor 8080:8080  -n ai-travel-advisor --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 
 

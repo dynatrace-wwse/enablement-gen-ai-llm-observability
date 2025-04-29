@@ -26,7 +26,8 @@ installMkdocs
 
 # In here you deploy the Application you want
 # The TODO App will be deployed as a sample
-deployTodoApp
+#deployTodoApp
+deployAITravelAdvisorApp
 
 # The Astroshop keeping changes of demo.live needs certmanager
 #certmanagerInstall

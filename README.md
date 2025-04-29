@@ -7,8 +7,6 @@ Dynatrace Gen AI & LLM observability provides complete visibility into all aspec
 - Build trust in LLM inputs and outputs
 - Explain and trace back your AI-powered application outputs
 - Reduce compliance risk for your Generative AI application
-        
-This codespace.... (WIP)
 
 
 Ready to learn more about LLM & Gen AI Observability? 
