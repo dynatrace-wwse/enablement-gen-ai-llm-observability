@@ -15,7 +15,6 @@ In our AI Travel Advisor app, we have three different agents:
 These Agents are orchestrated through LangChain using a complex system prompt.
 The orchestrator is the componenet that moves the control- and data-flow between agents.
 
-!!! bug "Add arch diagram"
 
 
 In this codespace, we're running a small Ollama model. Hence, most of the time the request will terminate with an error or a timeout limit is reached.

@@ -4,7 +4,8 @@
 Retrieval-Augmented Generation (RAG) is a technique that provides additional context to LLMs to have additional information to carry out a solution to the prompt they receive.
 In our AI Travel Advisor App, the RAG pipeline is built using LangChain. The retrieval step reaches out to Weaviate to query for documents relevant to the prompt in input.
 
-!!! bug "Add arch diagram"
+![Architecture](./img/rag-arch.jpg)
+
 
 Let's try again using the same city as input: `Sydney`.
 The answer returned should be quite puzzling, like the following:
@@ -19,6 +20,7 @@ Let's investigate what could be the reason of such a weird answer.
 Let's use again the Distributed Tracing App to inspect the request.
 
 ![RAG Trace](./img/rag_trace.png)
+!!! bug "change with new screenshot"
 
 We can see that the request is more complex because there is a step to fetch documents from Weaviate, process them, augment the prompt and finally send the final crafted prompt to Ollama.
 Selecting each span, we have at our disposal all the contextual information that describe that AI pipeline step.
@@ -44,7 +46,7 @@ Since we don't have wrong information around Paris, now the LLM should produce a
 
 ![Correct RAG](./img/good_rag.png)
 
-!!! bug "There is a bug with OpenLLMetry and Weaviate for which we don't have spans for it."
+!!! bug "There is a bug with OpenLLMetry and Weaviate for which it does generate Spans only for v3 of Weaviate. In this codebase, we fix it by explicity telling the sensor what function it should attach to it."
 
 <div class="grid cards" markdown>
 - [Let's explore another way of using AI:octicons-arrow-right-24:](7-agentic.md)
