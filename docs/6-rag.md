@@ -20,22 +20,26 @@ Let's investigate what could be the reason of such a weird answer.
 Let's use again the Distributed Tracing App to inspect the request.
 
 ![RAG Trace](./img/rag_trace.png)
-!!! bug "change with new screenshot"
 
 We can see that the request is more complex because there is a step to fetch documents from Weaviate, process them, augment the prompt and finally send the final crafted prompt to Ollama.
+Fetching the documents is a fast step that only takes few milliseconds and crafting the final response is taking almost all the time.
 Selecting each span, we have at our disposal all the contextual information that describe that AI pipeline step.
-Let's focus on the call to Ollama and select the `ChatOllama.chat` span.
 
+Let's focus on the time expensive call to Ollama and select the `ChatOllama.chat` span.
 In the detailed view, we can see the GenAI section. Let's start from the prompt message:
 
 ![RAG Trace Details](./img/rag_details.png)
 
-
-We can see that the prompt sent to the LLM contains information about Sydney and Bali.
-This is a clear indicator that our Knowledge Base inside Weaviate is not exahustive enough.
+We can see that the prompt sent to the LLM contains information about Sydney and Bali. Clearly something is wrong!
 LangChain retrieves the top N documents closest to the topic searched. 
+Let's see the fetched documents by pressing on the `retriever.done.task` span and looking into its attributes.
+
+![RAG Document Details](./img/rag_docs.png)
+
+We see that the query is looking for `Sydney` and two documents have been retrieved from Weaviate, one for Sydney and one for Bali.
 If we look into the application code, inside the `destinations` folder, we see only two small documents.
 The lack of coverage of the topic triggered the fetching of additional documents that don't really relate to Sydney.
+This is a clear indicator that our Knowledge Base inside Weaviate is not exahustive enough.
 
 Furthermore, we can also observe that feeding the LLM with garbage information produces garbage responses.
 The content of the Sydney or Bali documents provide innacurate facts. 

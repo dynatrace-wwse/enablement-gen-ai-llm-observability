@@ -503,6 +503,7 @@ deployAITravelAdvisorApp(){
   # Start Weaviate
   printInfoSection "Deploying our VectorDB => Weaviate"
   kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/weaviate.yaml
+  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
   printInfoSection "Waiting for Weaviate to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
   printInfoSection "Weaviate is ready"
@@ -511,6 +512,7 @@ deployAITravelAdvisorApp(){
   # Start AI Travel Advisor
   printInfoSection "Deploying AI App => AI Travel Advisor"
   kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ai-travel-advisor.yaml
+  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
   printInfoSection "Waiting for AI Travel Advisor to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
   printInfoSection "AI Travel Advisoraviate is ready"
