@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../4-content/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../6-rag/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>Dynatrace Enablement Lab: Gen AI & LLM Observability</title>
+        <title>5. Direct Chat - Dynatrace Enablement Lab: Gen AI & LLM Observability</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#direct-chat" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -88,7 +97,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-header__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
+    <a href=".." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-header__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              5. Direct Chat
             
           </span>
         </div>
@@ -231,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-nav__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
+    <a href=".." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-nav__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -261,7 +270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -281,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/2-getting-started/" class="md-nav__link">
+      <a href="../2-getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -301,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/3-codespaces/" class="md-nav__link">
+      <a href="../3-codespaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -321,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/4-content/" class="md-nav__link">
+      <a href="../4-content/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -338,10 +347,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/5-direct/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    5. Direct Chat
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -350,6 +379,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lets-follow-the-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let's follow the traces
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -361,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/6-rag/" class="md-nav__link">
+      <a href="../6-rag/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/7-agentic/" class="md-nav__link">
+      <a href="../7-agentic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -401,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cleanup/" class="md-nav__link">
+      <a href="../cleanup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -421,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/resources/" class="md-nav__link">
+      <a href="../resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -441,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/whats-next/" class="md-nav__link">
+      <a href="../whats-next/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,6 +529,25 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lets-follow-the-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let's follow the traces
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -482,8 +559,68 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="direct-chat">Direct Chat<a class="headerlink" href="#direct-chat" title="Permanent link">#</a></h1>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  dynatrace.sendBizEvent('page_load', {"page": "5. Direct Chat"});
+});
+</script>
+
+<p>In this mode, we directly send our prompt to Ollama to generate a travel raccomendation.
+Let's use <code>Sydney</code> as city to test the AI Travel raccomendation and press <code>Advise</code>.
+At first, you will see a loading animation and after a few seconds, an answer like the following one:</p>
+<p><img alt="Direct Chat example" src="../img/direct_chat.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">If you click on Advise multiple time, you will see that the answer is slightly different every time. LLMs have inherently a random nature which makes Observability important.</p>
+</div>
+<p>We saw that the response arrived after a few seconds, how can we sure that the response time is not sky rocketing? 
+How can be sure that the LLM answers correctly to user requests? 
+If we're using 3rd party LLMs, how can we monitor the cost associated with the requests?</p>
+<p>Luckily, we have Dynatrace 😉</p>
+<h2 id="lets-follow-the-traces">Let's follow the traces<a class="headerlink" href="#lets-follow-the-traces" title="Permanent link">#</a></h2>
+<p>Opening the Distributed Tracing App, you can filter it by services on the menu on the left-hand side. 
+You should see the service <code>ai-travel-advisor</code>. 
+Filtering by the service name allows to see all the request that we made so far to our AI Application.
+Clicking on one, will reveal the set of operation that are happening when we request a travel advice.</p>
+<p><img alt="First Trace" src="../img/first_trace.png" /></p>
+<p>The request is quite simple, we hit the API exposed by the service, we start a <a href="https://docs.dynatrace.com/docs/analyze-explore-automate/dynatrace-for-ai-observability/terms-and-concepts#traceloop-span-kind">Task</a> which denotes a specific operation or step within a workflow.
+Finally, we fire a call towards Ollama to generate a completion for the prompt.</p>
+<div class="admonition note">
+<p class="admonition-title">If OneAgent is also being deployed, we will see addional child traces that represent the call received by Ollama and the processing of the request.</p>
+</div>
+<p>From this view, we have an understanding of what's happening and how long it took the service to provide an answer to the user. 
+But let's navigate a bit deeper on what information are at our disposal!</p>
+<p>Clicking on the span <code>ollama.completion</code> we get more insights into what's happening when we call our LLMs. 
+In particular, the section around GenAI and LLM contain the relevant information for the domain, such as token consumption, prompt details, and model used.
+Based on which LLM the application is using, we can get more details, such as temperature, topK, and more deep level type of information.</p>
+<p><img alt="Trace Detail" src="../img/trace_details.png" /></p>
+<p>However, directly chatting with a model is not how moder AI application approach problems.
+These LLMs are powerful but don't know about a specific domains and contexes.
+In the next section, we're exploring a common approach to overcome this limitation.</p>
+<div class="grid cards">
+<ul>
+<li><a href="../6-rag/">Let's create an advance AI pipeline<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span></a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -517,10 +654,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["content.code.copy"], "search": "/assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>

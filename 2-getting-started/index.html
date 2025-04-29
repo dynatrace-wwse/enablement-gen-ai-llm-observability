@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-prerequisites-before-launching-the-codespace" class="md-skip">
+        <a href="#prerequisites-before-launching-the-codespace" class="md-skip">
           Skip to content
         </a>
       
@@ -332,11 +332,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-prerequisites-before-launching-the-codespace" class="md-nav__link">
+  <a href="#prerequisites-before-launching-the-codespace" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Prerequisites before launching the Codespace
+      Prerequisites before launching the Codespace
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites before launching the Codespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-dynatrace-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate a Dynatrace Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -395,11 +410,71 @@
   
   
     <li class="md-nav__item">
+      <a href="../5-direct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Direct Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-agentic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Agentic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cleanup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    5. Cleanup
+    8. Cleanup
   </span>
   
 
@@ -419,7 +494,7 @@
         
   
   <span class="md-ellipsis">
-    6. Resources
+    9. Resources
   </span>
   
 
@@ -439,7 +514,7 @@
         
   
   <span class="md-ellipsis">
-    7. What's next?
+    10. What's next?
   </span>
   
 
@@ -473,11 +548,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-prerequisites-before-launching-the-codespace" class="md-nav__link">
+  <a href="#prerequisites-before-launching-the-codespace" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Prerequisites before launching the Codespace
+      Prerequisites before launching the Codespace
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites before launching the Codespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-dynatrace-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate a Dynatrace Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -508,9 +598,30 @@
 <li>A <strong>GitHub account</strong> to interact with the demo repository.</li>
 </ul>
 </div>
-<h2 id="1-prerequisites-before-launching-the-codespace">1. Prerequisites before launching the Codespace<a class="headerlink" href="#1-prerequisites-before-launching-the-codespace" title="Permanent link">#</a></h2>
-<p>In here you place the prerequisites and everything that is needed before launching the codespace.</p>
-<p>As a Professor I highly recommend to install VSCode locally and always open the devcontainer from it, specially since we'll be using some plugins for enhancing the productivity. </p>
+<h2 id="prerequisites-before-launching-the-codespace">Prerequisites before launching the Codespace<a class="headerlink" href="#prerequisites-before-launching-the-codespace" title="Permanent link">#</a></h2>
+<h3 id="generate-a-dynatrace-token">Generate a Dynatrace Token<a class="headerlink" href="#generate-a-dynatrace-token" title="Permanent link">#</a></h3>
+<p>To create a Dynatrace token</p>
+<ol>
+<li>In Dynatrace, go to <strong>Access Tokens</strong>.<br />
+    To find <strong>Access Tokens</strong>, press <strong>Ctrl/Cmd+K</strong> to search for and select <strong>Access Tokens</strong>.</li>
+<li>In <strong>Access Tokens</strong>, select <strong>Generate new token</strong>.</li>
+<li>Enter a <strong>Token name</strong> for your new token.</li>
+<li>Give your new token the following permissions:</li>
+<li>Search for and select all of the following scopes.<ul>
+<li><strong>Ingest metrics</strong> (<code>metrics.ingest</code>)</li>
+<li><strong>Ingest logs</strong> (<code>logs.ingest</code>)</li>
+<li><strong>Ingest events</strong> (<code>events.ingest</code>)</li>
+<li><strong>Ingest OpenTelemetry traces</strong> (<code>openTelemetryTrace.ingest</code>)</li>
+<li><strong>Read metrics</strong> (<code>metrics.read</code>)</li>
+<li><strong>Write settings</strong> (<code>settings.write</code>)</li>
+</ul>
+</li>
+<li>Select <strong>Generate token</strong>.</li>
+<li>Copy the generated token to the clipboard and be ready to use it in the next step.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">You can only access your token once upon creation. You can't reveal it afterward.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Let's launch the Codespace</p>
 <p>Now we are ready to launch the Codespace!</p>

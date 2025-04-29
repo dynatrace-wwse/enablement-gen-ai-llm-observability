@@ -393,11 +393,71 @@
   
   
     <li class="md-nav__item">
+      <a href="5-direct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Direct Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6-rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. RAG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="7-agentic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Agentic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="cleanup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    5. Cleanup
+    8. Cleanup
   </span>
   
 
@@ -417,7 +477,7 @@
         
   
   <span class="md-ellipsis">
-    6. Resources
+    9. Resources
   </span>
   
 
@@ -437,7 +497,7 @@
         
   
   <span class="md-ellipsis">
-    7. What's next?
+    10. What's next?
   </span>
   
 
@@ -511,11 +571,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><strong>Support is provided via <a href="https://github.com/dynatrace-wwse/enablement-live-debugger-bug-hunting/issues" target="_blank">GitHub issues</a> only</strong>. The materials provided in this repository are offered "as-is" without any warranties, express or implied. Use them at your own risk.</p>
 </div>
 <h2 id="whats-this-tutorial-all-about">What's this tutorial all about<a class="headerlink" href="#whats-this-tutorial-all-about" title="Permanent link">#</a></h2>
-<p>In this tutorial we'll learn:
-The basics about Gen AI &amp; LLM Monitoring</p>
+<p>In this tutorial we'll learn the basics about AI &amp; LLM Monitoring.</p>
+<p>Dynatrace supports <a href="https://docs.dynatrace.com/docs/analyze-explore-automate/dynatrace-for-ai-observability#ai-and-llm-observability">AI and LLM Observability</a>
+for more than 40 different technologies providing visibility into the different layers of AI and LLM applications.</p>
+<ul>
+<li>Monitor service health and performance: Track real-time metrics (request counts, durations, and error rates). Stay aligned with SLOs.</li>
+<li>Monitor service quality and cost: Implement error budgets for performance and cost control. Validate model consumption and response times. Prevent quality degradation by monitoring models and usage patterns in real time.</li>
+<li>End-to-end tracing and debugging: Trace prompt flows from initial request to final response for quick root cause analysis and troubleshoot. Gain granular visibility into LLM prompt latencies and model-level metrics. Pinpoint issues in prompts, tokens, or system integrations.</li>
+<li>Build trust, reduce compliance and audit risks: Track every input and output for an audit trail. Query all data in real time and store for future reference. Maintain full data lineage from prompt to response.</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">What will we do</p>
-<p>This is a work in progress.</p>
+<p>In this tutorial we will learn how it is easy to observe an AI application that uses <a href="https://ollama.com/">Ollama</a>
+as Large Language Model, <a href="https://weaviate.io/">Weaviate</a> as Vector Database, and <a href="https://www.langchain.com/">LangChain</a> as an orchestrator
+to create <a href="https://python.langchain.com/docs/concepts/rag/">Retrieval augmented generation (RAG)</a> and <a href="https://python.langchain.com/docs/concepts/agents/">Agentic</a> AI Pipelines.</p>
 </div>
 <div class="grid cards">
 <ul>

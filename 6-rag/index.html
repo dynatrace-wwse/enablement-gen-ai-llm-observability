@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../5-direct/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../7-agentic/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>Dynatrace Enablement Lab: Gen AI & LLM Observability</title>
+        <title>6. RAG - Dynatrace Enablement Lab: Gen AI & LLM Observability</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#retrieval-augmented-generation-rag" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -88,7 +97,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-header__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
+    <a href=".." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-header__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              6. RAG
             
           </span>
         </div>
@@ -231,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-nav__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
+    <a href=".." title="Dynatrace Enablement Lab: Gen AI &amp; LLM Observability" class="md-nav__button md-logo" aria-label="Dynatrace Enablement Lab: Gen AI & LLM Observability" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -261,7 +270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -281,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/2-getting-started/" class="md-nav__link">
+      <a href="../2-getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -301,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/3-codespaces/" class="md-nav__link">
+      <a href="../3-codespaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -321,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/4-content/" class="md-nav__link">
+      <a href="../4-content/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -341,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/5-direct/" class="md-nav__link">
+      <a href="../5-direct/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -358,10 +367,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/6-rag/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    6. RAG
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -370,6 +399,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tracing-to-the-rescue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing to the rescue
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -381,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/7-agentic/" class="md-nav__link">
+      <a href="../7-agentic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -401,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cleanup/" class="md-nav__link">
+      <a href="../cleanup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -421,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/resources/" class="md-nav__link">
+      <a href="../resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -441,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/whats-next/" class="md-nav__link">
+      <a href="../whats-next/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,6 +529,25 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tracing-to-the-rescue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing to the rescue
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -482,8 +559,71 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Permanent link">#</a></h1>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  dynatrace.sendBizEvent('page_load', {"page": "6. RAG"});
+});
+</script>
+
+<p>Retrieval-Augmented Generation (RAG) is a technique that provides additional context to LLMs to have additional information to carry out a solution to the prompt they receive.
+In our AI Travel Advisor App, the RAG pipeline is built using LangChain. The retrieval step reaches out to Weaviate to query for documents relevant to the prompt in input.</p>
+<p><img alt="Architecture" src="../img/rag-arch.jpg" /></p>
+<p>Let's try again using the same city as input: <code>Sydney</code>.
+The answer returned should be quite puzzling, like the following:</p>
+<p><img alt="hallucination" src="../img/rag_response.png" /></p>
+<p>In this answer, the LLM is hallucinating an answer which is far from being correct!
+Let's investigate what could be the reason of such a weird answer.</p>
+<h2 id="tracing-to-the-rescue">Tracing to the rescue<a class="headerlink" href="#tracing-to-the-rescue" title="Permanent link">#</a></h2>
+<p>Let's use again the Distributed Tracing App to inspect the request.</p>
+<p><img alt="RAG Trace" src="../img/rag_trace.png" /></p>
+<p>We can see that the request is more complex because there is a step to fetch documents from Weaviate, process them, augment the prompt and finally send the final crafted prompt to Ollama.
+Fetching the documents is a fast step that only takes few milliseconds and crafting the final response is taking almost all the time.
+Selecting each span, we have at our disposal all the contextual information that describe that AI pipeline step.</p>
+<p>Let's focus on the time expensive call to Ollama and select the <code>ChatOllama.chat</code> span.
+In the detailed view, we can see the GenAI section. Let's start from the prompt message:</p>
+<p><img alt="RAG Trace Details" src="../img/rag_details.png" /></p>
+<p>We can see that the prompt sent to the LLM contains information about Sydney and Bali. Clearly something is wrong!
+LangChain retrieves the top N documents closest to the topic searched. 
+Let's see the fetched documents by pressing on the <code>retriever.done.task</code> span and looking into its attributes.</p>
+<p><img alt="RAG Document Details" src="../img/rag_docs.png" /></p>
+<p>We see that the query is looking for <code>Sydney</code> and two documents have been retrieved from Weaviate, one for Sydney and one for Bali.
+If we look into the application code, inside the <code>destinations</code> folder, we see only two small documents.
+The lack of coverage of the topic triggered the fetching of additional documents that don't really relate to Sydney.
+This is a clear indicator that our Knowledge Base inside Weaviate is not exahustive enough.</p>
+<p>Furthermore, we can also observe that feeding the LLM with garbage information produces garbage responses.
+The content of the Sydney or Bali documents provide innacurate facts. 
+This is telling us that the LLM really made use of the information we provided to it.</p>
+<p>Let's try again using a different city, like <code>Paris</code>.
+Since we don't have wrong information around Paris, now the LLM should produce a valid answer!</p>
+<p><img alt="Correct RAG" src="../img/good_rag.png" /></p>
+<div class="admonition bug">
+<p class="admonition-title">There is a bug with OpenLLMetry and Weaviate for which it does generate Spans only for v3 of Weaviate. In this codebase, we fix it by explicity telling the sensor what function it should attach to it.</p>
+</div>
+<div class="grid cards">
+<ul>
+<li><a href="../7-agentic/">Let's explore another way of using AI<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span></a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -517,10 +657,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["content.code.copy"], "search": "/assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
