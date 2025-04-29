@@ -87,7 +87,8 @@ from opentelemetry.instrumentation.weaviate import WeaviateInstrumentor
 from opentelemetry.instrumentation import weaviate as w
 w.WRAPPED_METHODS = [
     {
-        "module": "weaviate.collections.queries.hybrid.executors",
+        # v4.14.1
+        "module": "weaviate.collections.queries.hybrid.query.executor",
         "object": "_HybridQueryExecutor",
         "method": "hybrid",
         "span_name": "db.weaviate.collections.query.hybrid",
