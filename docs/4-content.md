@@ -30,7 +30,30 @@ Click on it, you should see something like this:
 
 ![Landing Page](img/landing.png)
 
-There are three different modes:
+The app is monitored with [OpenLLMetry](https://github.com/traceloop/openllmetry),
+an open source library built on top of OpenTelemetry to provide auto-instrumentation for AI Technologies.
+To configure OpenLLMetry, you should add the following code snippet before any library is imported.
+It is common practice to add it to the first lines of the main python script.
+The initialization requires a Dynatrace Token and a OTLP endpoint.
+To find the available OTLP endpoints supported by Dynatrace, please refer to [our documentation](https://docs.dynatrace.com/docs/ingest-from/opentelemetry/getting-started/otlp-export).
+
+
+```py title="OpenLLMetry setup"
+from traceloop.sdk import Traceloop
+# Dynatrace API Auth Header
+headers = {"Authorization": f"Api-Token {TOKEN}"}
+# Initialize OpenLLMetry
+Traceloop.init(
+    app_name="ai-travel-advisor",
+    api_endpoint=OTEL_ENDPOINT,
+    disable_batch=True,
+    headers=headers,
+)
+```
+
+!!! Example "OpenLLMetry has to be initialized before the import of the AI technologies because it proxies the import of the libraries and changes their code to provide additional telemetry. If the library is already imported, the Python interpreter won't see the changes introduced by OpenLLMetry."
+
+The AI Travel Advisor App has three different modes to interact with an LLM:
 
 - Direct Chat
 - RAG
