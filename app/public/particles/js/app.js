@@ -89,7 +89,7 @@ particlesJS('particles-js',
           "mode": "repulse"
         },
         "onclick": {
-          "enable": true,
+          "enable": false,
           "mode": "push"
         },
         "resize": true
@@ -112,7 +112,7 @@ particlesJS('particles-js',
           "distance": 200
         },
         "push": {
-          "particles_nb": 4
+          "particles_nb": 0
         },
         "remove": {
           "particles_nb": 2
@@ -121,8 +121,8 @@ particlesJS('particles-js',
     },
     "retina_detect": true,
     "config_demo": {
-      "hide_card": false,
-      "background_color": "#b61924",
+      "hide_card": true,
+      "background_color": "",
       "background_image": "",
       "background_position": "50% 50%",
       "background_repeat": "no-repeat",
