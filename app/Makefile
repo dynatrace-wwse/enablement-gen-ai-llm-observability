@@ -6,3 +6,6 @@ push:
 
 login:
 	docker logout && docker login
+
+test: 
+	docker run -p 8080:80 -v /Users/sergio.hinojosa/repos/enablement/enablement-gen-ai-llm-observability/app/public:/usr/share/nginx/html nginx
