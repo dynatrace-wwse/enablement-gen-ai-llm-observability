@@ -26,6 +26,8 @@ spec:
               value: "http://ollama.ai-travel-advisor.svc.cluster.local:11434"
             - name: WEAVIATE_ENDPOINT
               value: "weaviate.ai-travel-advisor.svc.cluster.local"
+            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+              value: "delta"
           imagePullPolicy: Always
           volumeMounts:
             - name: secrets
