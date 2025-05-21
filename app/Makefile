@@ -1,11 +1,17 @@
+IMAGE= shinojosa/ai-travel-advisor
+VERSION = v1.0.0
+
 build:
-	docker build -t shinojosa/ai-travel-advisor:v0.1.1 .
+	docker build -t $(IMAGE):$(VERSION) .
 
 push:
-	docker push shinojosa/ai-travel-advisor:v0.1.1
+	docker push $(IMAGE):$(VERSION)
 
 login:
 	docker logout && docker login
 
-test: 
-	docker run -p 8080:80 -v /Users/sergio.hinojosa/repos/enablement/enablement-gen-ai-llm-observability/app/public:/usr/share/nginx/html nginx
+runnginx:
+	docker run -p 8080:80 -v /workspaces/enablement-gen-ai-llm-observability/app/public:/usr/share/nginx/html nginx
+
+rollout:
+	kubectl set image deployment/ai-travel-advisor ai-travel-advisor=$(IMAGE):$(VERSION) -n ai-travel-advisor
