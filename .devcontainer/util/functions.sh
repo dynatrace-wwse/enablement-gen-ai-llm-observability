@@ -87,6 +87,34 @@ waitForAllPods() {
   fi
 }
 
+waitForPod() {
+  # Function to filter by Namespace and POD string, default is ALL namespaces
+  # If 2 parameters then the first is Namespace the second is Pod-String
+  # If 1 parameters then Namespace == all-namespaces the first is Pod-String
+  if [[ $# -eq 2 ]]; then
+    namespace_filter="-n $1"
+    pod_filter="$2"
+  elif [[ $# -eq 1 ]]; then
+    namespace_filter="--all-namespaces"
+    pod_filter="$1"
+  fi
+  RETRY=0
+  RETRY_MAX=60
+  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
+  CMD="kubectl get pods $namespace_filter 2>&1 | grep -c -E '$pod_filter'"
+  printInfo "Verifying that pods in \"$namespace_filter\" with name \"$pod_filter\" is scheduled in a workernode "
+  while [[ $RETRY -lt $RETRY_MAX ]]; do
+    pods_running=$(eval "$CMD")
+    if [[ "$pods_running" != '0' ]]; then
+      printInfo "\"$pods_running\" pods are running on \"$namespace_filter\" with name \"$pod_filter\" exiting loop."
+      break
+    fi
+    RETRY=$(($RETRY + 1))
+    printWarn "Retry: ${RETRY}/${RETRY_MAX} - No pods are running on  \"$namespace_filter\" with name \"$pod_filter\". Wait 10s for $pod_filter PoDs to be scheduled..."
+    sleep 10
+  done
+}
+
 waitForAllReadyPods() {
   # Function to filter by Namespace, default is ALL
   if [[ $# -eq 1 ]]; then
@@ -488,39 +516,42 @@ deployOperatorViaHelm(){
 
 
 deployAITravelAdvisorApp(){
-  printInfoSection "Deploying AI Travel Advisor App"
+  printInfoSection "Deploying AI Travel Advisor App & it's LLM"
 
-  kubectl create ns ai-travel-advisor
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/namespace.yaml
+
   kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_TENANT/api/v2/otlp
 
   # Start OLLAMA
-  printInfoSection "Deploying our LLM => Ollama"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
-  printInfoSection "Waiting for Ollama to get ready"
+  printInfo "Deploying our LLM => Ollama"
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/ollama.yaml
+  waitForPod ai-travel-advisor ollama
+  printInfo "Waiting for Ollama to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
-  printInfoSection "Ollama is ready"
+  printInfo "Ollama is ready"
 
   # Start Weaviate
-  printInfoSection "Deploying our VectorDB => Weaviate"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/weaviate.yaml
-  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
-  printInfoSection "Waiting for Weaviate to get ready"
+  printInfo "Deploying our VectorDB => Weaviate"
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/weaviate.yaml
+
+  waitForPod ai-travel-advisor weaviate
+  printInfo "Waiting for Weaviate to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
-  printInfoSection "Weaviate is ready"
+  printInfo "Weaviate is ready"
 
 
   # Start AI Travel Advisor
-  printInfoSection "Deploying AI App => AI Travel Advisor"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ai-travel-advisor.yaml
-  sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
-  printInfoSection "Waiting for AI Travel Advisor to get ready"
+  printInfo "Deploying AI App => AI Travel Advisor"
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/ai-travel-advisor.yaml
+  
+  waitForPod ai-travel-advisor ai-travel-advisor
+  printInfo "Waiting for AI Travel Advisor to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
-  printInfoSection "AI Travel Advisoraviate is ready"
+  printInfo "AI Travel Advisor is ready"
 
   # Define the NodePort to expose the app from the Cluster
   kubectl patch service ai-travel-advisor --namespace=ai-travel-advisor --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
-
-  printInfoSection "AI Travel Advisor is available via NodePort=30100"
+  printInfo "AI Travel Advisor is available via NodePort=30100"
 
 }
 
