@@ -10,7 +10,7 @@ In our AI Travel Advisor App, the RAG pipeline is built using LangChain. The ret
 Let's try again using the same city as input: `Sydney`.
 The answer returned should be quite puzzling, like the following:
 
-![hallucination](./img/rag_response.png)
+![hallucination](./img/bad_rag.jpg)
 
 In this answer, the LLM is hallucinating an answer which is far from being correct!
 Let's investigate what could be the reason of such a weird answer.
@@ -36,8 +36,10 @@ Let's see the fetched documents by pressing on the `retriever.done.task` span an
 
 ![RAG Document Details](./img/rag_docs.png)
 
-We see that the query is looking for `Sydney` and two documents have been retrieved from Weaviate, one for Sydney and one for Bali.
-If we look into the application code, inside the `destinations` folder, we see only two small documents.
+We see that the query is looking for `Sydney` and two documents have been retrieved from Weaviate, one for <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations/sydney.html" target="_blank">Sydney</a> and one for <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations/bali.html" target="_blank">Bali</a>.
+If we look into the application code, inside the <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations" target="_blank">destinations</a> folder, we see only two small documents which contain innacurate information.
+
+
 The lack of coverage of the topic triggered the fetching of additional documents that don't really relate to Sydney.
 This is a clear indicator that our Knowledge Base inside Weaviate is not exahustive enough.
 
@@ -48,7 +50,7 @@ This is telling us that the LLM really made use of the information we provided t
 Let's try again using a different city, like `Paris`.
 Since we don't have wrong information around Paris, now the LLM should produce a valid answer!
 
-![Correct RAG](./img/good_rag.png)
+![Correct RAG](./img/good_rag.jpg)
 
 !!! bug "There is a bug with OpenLLMetry and Weaviate for which it does generate Spans only for v3 of Weaviate. In this codebase, we fix it by explicity telling the sensor what function it should attach to it."
 

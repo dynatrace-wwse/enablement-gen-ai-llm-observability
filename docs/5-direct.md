@@ -5,7 +5,7 @@ In this mode, we directly send our prompt to Ollama to generate a travel raccome
 Let's use `Sydney` as city to test the AI Travel raccomendation and press `Advise`.
 At first, you will see a loading animation and after a few seconds, an answer like the following one:
 
-![Direct Chat example](./img/direct_chat.png)
+![Direct Chat example](./img/direct_chat.jpg)
 
 !!! Example "If you click on Advise multiple time, you will see that the answer is slightly different every time. LLMs have inherently a random nature which makes Observability important." 
 

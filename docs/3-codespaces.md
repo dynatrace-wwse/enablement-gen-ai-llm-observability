@@ -47,8 +47,8 @@ You can create a new Terminal directly in VSCode, type `zsh` or call the functio
 The client `kubectl` and `k9s`are configured so you can navigate in your local Kubernetes like butter. 
 ![k9s](img/k9s.png)
 
-### Exposing the apps to the public
-The apps MKdocs and AI Travel Advisor app are being exposed in the devcontainer to your localhost. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.
+### Exposing the app to the public
+The app AI Travel Advisor is being exposed in the devcontainer to your localhost via Nodeport. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.
 
 
 ## 5. Troubleshooting
