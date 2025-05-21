@@ -490,19 +490,20 @@ deployOperatorViaHelm(){
 deployAITravelAdvisorApp(){
   printInfoSection "Deploying AI Travel Advisor App"
 
-  kubectl create ns ai-travel-advisor
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/namespace.yaml
+
   kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal=token=$DT_TOKEN --from-literal=endpoint=$DT_TENANT/api/v2/otlp
 
   # Start OLLAMA
   printInfoSection "Deploying our LLM => Ollama"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ollama.yaml
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/ollama.yaml
   printInfoSection "Waiting for Ollama to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
   printInfoSection "Ollama is ready"
 
   # Start Weaviate
   printInfoSection "Deploying our VectorDB => Weaviate"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/weaviate.yaml
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/weaviate.yaml
   sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
   printInfoSection "Waiting for Weaviate to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
@@ -511,7 +512,7 @@ deployAITravelAdvisorApp(){
 
   # Start AI Travel Advisor
   printInfoSection "Deploying AI App => AI Travel Advisor"
-  kubectl apply -f /workspaces/$RepositoryName/.devcontainer/app/ai-travel-advisor.yaml
+  kubectl apply -f /workspaces/$RepositoryName/app/k8s/ai-travel-advisor.yaml
   sleep 3 # Give the K8s API enough time to process these files and create the respective CRs
   printInfoSection "Waiting for AI Travel Advisor to get ready"
   kubectl -n ai-travel-advisor wait --for=condition=Ready pod --all --timeout=10m
