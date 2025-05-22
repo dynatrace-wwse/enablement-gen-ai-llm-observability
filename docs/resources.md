@@ -16,7 +16,7 @@
 - [Why 85% of AI projects fail and how Dynatrace can save yours](https://www.dynatrace.com/news/blog/why-ai-projects-fail/){target="_blank"}
 - [Dynatrace Blog](https://www.dynatrace.com/news/blog/){target="_blank"}
 
-### Misc
+### Miscellaneous
 
 - [Highspot - How to sell AI Observability](https://dynatrace.highspot.com/items/680626e8b6f0c6d00c74355f){target="_blank"}
 - [SE Demo Pitch Deck](https://dynatrace.sharepoint.com/:p:/s/gtm/EbGsvrquWFtKiYve9mpIpdwByHmUjIwEnNuZknTulTXXMw?e=NLcTdZ){target="_blank"}

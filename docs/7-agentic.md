@@ -20,7 +20,7 @@ The orchestrator is the componenet that moves the control- and data-flow between
 In this codespace, we're running a small Ollama model. Hence, most of the time the request will terminate with an error or a timeout limit is reached.
 Changing the LLM from Ollama to a foundation one, like a Bedrock model, ChatGPT, or Google Gemini will solve these issues.
 
-![Agentic Example](./img/agentic_example.png)
+![Agentic Example](./img/agentic_example.jpg)
 
 # Let's try to understand what's happening 
 
