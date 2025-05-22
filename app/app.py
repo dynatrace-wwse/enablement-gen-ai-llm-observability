@@ -273,7 +273,7 @@ agentic_executor = prep_agent_executor()
 ####################################
 @app.get("/api/v1/completion")
 def submit_completion(framework: str, prompt: str):
-    with otel_tracer.start_as_current_span(name="/api/v1/completion") as span:
+    with otel_tracer.start_as_current_span(name="/api/v1/completion", kind=trace.SpanKind.SERVER) as span:
         if framework == "llm":
             return llm_chat(prompt)
         if framework == "rag":
