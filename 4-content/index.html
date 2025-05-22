@@ -404,27 +404,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output-evaluation" class="md-nav__link">
+  <a href="#1-output-evaluation" class="md-nav__link">
     <span class="md-ellipsis">
-      Output evaluation
+      1.- Output evaluation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#prompt-analysis" class="md-nav__link">
+  <a href="#2-prompt-analysis" class="md-nav__link">
     <span class="md-ellipsis">
-      Prompt analysis
+      2.- Prompt analysis
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieval-improvement" class="md-nav__link">
+  <a href="#3-retrieval-improvement" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieval improvement
+      3.- Retrieval improvement
     </span>
   </a>
   
@@ -436,9 +436,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lets-see-an-example-of-ai-application" class="md-nav__link">
+  <a href="#lets-see-an-example-of-an-ai-application-the-ai-travel-advisor" class="md-nav__link">
     <span class="md-ellipsis">
-      Let's see an example of AI Application
+      Let's see an example of an AI Application, the AI Travel Advisor
     </span>
   </a>
   
@@ -627,27 +627,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output-evaluation" class="md-nav__link">
+  <a href="#1-output-evaluation" class="md-nav__link">
     <span class="md-ellipsis">
-      Output evaluation
+      1.- Output evaluation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#prompt-analysis" class="md-nav__link">
+  <a href="#2-prompt-analysis" class="md-nav__link">
     <span class="md-ellipsis">
-      Prompt analysis
+      2.- Prompt analysis
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieval-improvement" class="md-nav__link">
+  <a href="#3-retrieval-improvement" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieval improvement
+      3.- Retrieval improvement
     </span>
   </a>
   
@@ -659,9 +659,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lets-see-an-example-of-ai-application" class="md-nav__link">
+  <a href="#lets-see-an-example-of-an-ai-application-the-ai-travel-advisor" class="md-nav__link">
     <span class="md-ellipsis">
-      Let's see an example of AI Application
+      Let's see an example of an AI Application, the AI Travel Advisor
     </span>
   </a>
   
@@ -686,26 +686,55 @@
 
 
 <h1 id="content">Content<a class="headerlink" href="#content" title="Permanent link">#</a></h1>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  dynatrace.sendBizEvent('page_load', {"page": "4. Content"});
+});
+</script>
+
 <h2 id="what-is-ai-and-llm-observability">What is AI and LLM observability?<a class="headerlink" href="#what-is-ai-and-llm-observability" title="Permanent link">#</a></h2>
-<p>AI and Large language model (LLM) observability provides visibility into all layers AI-powered applications.
+<p>AI and Large Language Model (LLM) observability provides visibility into all layers AI-powered applications.
 This approach covers the complete AI stack, from foundational models and vector databases to RAG orchestration frameworks, ensuring visibility across every layer of modern AI applications. 
 Complete observability is critical to ensure accuracy and reliability.</p>
 <h2 id="the-need-for-ai-and-llm-observability">The need for AI and LLM observability<a class="headerlink" href="#the-need-for-ai-and-llm-observability" title="Permanent link">#</a></h2>
 <p>As large language models have evolved, many use cases have emerged. Common AI implementations include chatbots, data analysis, data extraction, code creation, and content creation. These AI-powered models offer benefits such as speed, scope, and scale. LLMs can quickly handle complex queries using a variety of data types from multiple data sources.</p>
-<p>However, synthesizing more data faster doesn't always mean better results. Models may function perfectly, but if the data sources aren't accurate, outputs will be inaccurate, as well. Furthermore, if the data is valid, but processes are flawed, results won't be reliable. Therefore, observability is necessary to ensure all aspects of LLM operation are correct and consistent.</p>
+<p>However, synthesizing more data faster doesn't always mean better results. Models may function perfectly, but if the data sources aren't accurate, outputs will be inaccurate, as well. Furthermore, if the data is valid, but processes are flawed, results won't be reliable. Therefore, observability is necessary to ensure that all aspects of the LLM operations are correct and consistent.</p>
 <h2 id="key-components-of-ai-and-llm-observability">Key components of AI and LLM observability<a class="headerlink" href="#key-components-of-ai-and-llm-observability" title="Permanent link">#</a></h2>
 <p>AI observability has three key components:</p>
-<h3 id="output-evaluation">Output evaluation<a class="headerlink" href="#output-evaluation" title="Permanent link">#</a></h3>
+<h3 id="1-output-evaluation">1.- Output evaluation<a class="headerlink" href="#1-output-evaluation" title="Permanent link">#</a></h3>
 <p>Teams must regularly evaluate outputs for accuracy and reliability. Because many organizations use third-party models, teams often accomplish this using a separate evaluation LLM that’s purpose-built for this function.</p>
-<h3 id="prompt-analysis">Prompt analysis<a class="headerlink" href="#prompt-analysis" title="Permanent link">#</a></h3>
+<h3 id="2-prompt-analysis">2.- Prompt analysis<a class="headerlink" href="#2-prompt-analysis" title="Permanent link">#</a></h3>
 <p>Poorly constructed prompts are a common cause of low-quality results. Therefore, LLM observability regularly analyzes prompts to determine if queries produce desired results and if better prompt templates can improve them.</p>
-<h3 id="retrieval-improvement">Retrieval improvement<a class="headerlink" href="#retrieval-improvement" title="Permanent link">#</a></h3>
+<h3 id="3-retrieval-improvement">3.- Retrieval improvement<a class="headerlink" href="#3-retrieval-improvement" title="Permanent link">#</a></h3>
 <p>Data search and retrieval are critical for effective output. Here, the observability solution considers the retrieved data's context and accuracy, and it looks for ways to improve this process.</p>
-<h2 id="lets-see-an-example-of-ai-application">Let's see an example of AI Application<a class="headerlink" href="#lets-see-an-example-of-ai-application" title="Permanent link">#</a></h2>
+<h2 id="lets-see-an-example-of-an-ai-application-the-ai-travel-advisor">Let's see an example of an AI Application, the AI Travel Advisor<a class="headerlink" href="#lets-see-an-example-of-an-ai-application-the-ai-travel-advisor" title="Permanent link">#</a></h2>
 <p>In VSCode open a new terminal and in the Welcome Message you should see a link to the AI Travel Advisor App UI. 
 Click on it, you should see something like this:</p>
-<p><img alt="Landing Page" src="../img/landing.png" /></p>
-<p>There are three different modes:</p>
+<p><img alt="Landing Page" src="../img/ai_travel_advisor.jpg" /></p>
+<p>The application is a basic implementation of AI technologies where the user can type the name of a city and then the AI will give back a travel advice depending on the selected Mode enhancing the user input like the following:
+<div class="highlight"><span class="filename">User input converted into travel advice</span><pre><span></span><code> <span class="n">Question</span><span class="p">:</span> <span class="n">Give</span> <span class="n">travel</span> <span class="n">advise</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">paragraph</span> <span class="n">of</span> <span class="nb">max</span> <span class="mi">50</span> <span class="n">words</span> <span class="n">about</span> <span class="p">{</span><span class="nb">input</span><span class="p">}</span>  
+</code></pre></div></p>
+<p>This sample application is monitored with <a href="https://github.com/traceloop/openllmetry">OpenLLMetry</a>,
+an open source library built on top of OpenTelemetry to provide auto-instrumentation for AI Technologies.
+To configure OpenLLMetry, you should add the following code snippet before any library is imported.
+It is common practice to add it to the first lines of the main python script.
+The initialization requires a Dynatrace Token and a OTLP endpoint.
+To find the available OTLP endpoints supported by Dynatrace, please refer to <a href="https://docs.dynatrace.com/docs/ingest-from/opentelemetry/getting-started/otlp-export">our documentation</a>.</p>
+<div class="highlight"><span class="filename">OpenLLMetry setup</span><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">traceloop.sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Traceloop</span>
+<span class="c1"># Dynatrace API Auth Header</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Api-Token </span><span class="si">{</span><span class="n">TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+<span class="c1"># Initialize OpenLLMetry</span>
+<span class="n">Traceloop</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">app_name</span><span class="o">=</span><span class="s2">&quot;ai-travel-advisor&quot;</span><span class="p">,</span>
+    <span class="n">api_endpoint</span><span class="o">=</span><span class="n">OTEL_ENDPOINT</span><span class="p">,</span>
+    <span class="n">disable_batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">OpenLLMetry has to be initialized before the import of the AI technologies because it proxies the import of the libraries and changes their code to provide additional telemetry. If the library is already imported, the Python interpreter won't see the changes introduced by OpenLLMetry.</p>
+</div>
+<p>The AI Travel Advisor App has three different modes to interact with an LLM:</p>
 <ul>
 <li>Direct Chat</li>
 <li>RAG</li>

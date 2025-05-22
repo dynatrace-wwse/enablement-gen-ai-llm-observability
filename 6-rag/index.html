@@ -577,7 +577,7 @@ In our AI Travel Advisor App, the RAG pipeline is built using LangChain. The ret
 <p><img alt="Architecture" src="../img/rag-arch.jpg" /></p>
 <p>Let's try again using the same city as input: <code>Sydney</code>.
 The answer returned should be quite puzzling, like the following:</p>
-<p><img alt="hallucination" src="../img/rag_response.png" /></p>
+<p><img alt="hallucination" src="../img/bad_rag.jpg" /></p>
 <p>In this answer, the LLM is hallucinating an answer which is far from being correct!
 Let's investigate what could be the reason of such a weird answer.</p>
 <h2 id="tracing-to-the-rescue">Tracing to the rescue<a class="headerlink" href="#tracing-to-the-rescue" title="Permanent link">#</a></h2>
@@ -593,16 +593,16 @@ In the detailed view, we can see the GenAI section. Let's start from the prompt 
 LangChain retrieves the top N documents closest to the topic searched. 
 Let's see the fetched documents by pressing on the <code>retriever.done.task</code> span and looking into its attributes.</p>
 <p><img alt="RAG Document Details" src="../img/rag_docs.png" /></p>
-<p>We see that the query is looking for <code>Sydney</code> and two documents have been retrieved from Weaviate, one for Sydney and one for Bali.
-If we look into the application code, inside the <code>destinations</code> folder, we see only two small documents.
-The lack of coverage of the topic triggered the fetching of additional documents that don't really relate to Sydney.
+<p>We see that the query is looking for <code>Sydney</code> and two documents have been retrieved from Weaviate, one for <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations/sydney.html" target="_blank">Sydney</a> and one for <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations/bali.html" target="_blank">Bali</a>.
+If we look into the application code, inside the <a href="https://github.com/dynatrace-wwse/enablement-gen-ai-llm-observability/tree/main/app/destinations" target="_blank">destinations</a> folder, we see only two small documents which contain innacurate information.</p>
+<p>The lack of coverage of the topic triggered the fetching of additional documents that don't really relate to Sydney.
 This is a clear indicator that our Knowledge Base inside Weaviate is not exahustive enough.</p>
 <p>Furthermore, we can also observe that feeding the LLM with garbage information produces garbage responses.
 The content of the Sydney or Bali documents provide innacurate facts. 
 This is telling us that the LLM really made use of the information we provided to it.</p>
 <p>Let's try again using a different city, like <code>Paris</code>.
 Since we don't have wrong information around Paris, now the LLM should produce a valid answer!</p>
-<p><img alt="Correct RAG" src="../img/good_rag.png" /></p>
+<p><img alt="Correct RAG" src="../img/good_rag.jpg" /></p>
 <div class="admonition bug">
 <p class="admonition-title">There is a bug with OpenLLMetry and Weaviate for which it does generate Spans only for v3 of Weaviate. In this codebase, we fix it by explicity telling the sensor what function it should attach to it.</p>
 </div>
