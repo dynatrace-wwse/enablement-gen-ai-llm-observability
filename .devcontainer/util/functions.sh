@@ -56,6 +56,34 @@ printGreeting(){
   bash $CODESPACE_VSCODE_FOLDER/.devcontainer/util/greeting.sh
 }
 
+waitForPod() {
+  # Function to filter by Namespace and POD string, default is ALL namespaces
+  # If 2 parameters then the first is Namespace the second is Pod-String
+  # If 1 parameters then Namespace == all-namespaces the first is Pod-String
+  if [[ $# -eq 2 ]]; then
+    namespace_filter="-n $1"
+    pod_filter="$2"
+  elif [[ $# -eq 1 ]]; then
+    namespace_filter="--all-namespaces"
+    pod_filter="$1"
+  fi
+  RETRY=0
+  RETRY_MAX=60
+  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
+  CMD="kubectl get pods $namespace_filter 2>&1 | grep -c -E '$pod_filter'"
+  printInfo "Verifying that pods in \"$namespace_filter\" with name \"$pod_filter\" is scheduled in a workernode "
+  while [[ $RETRY -lt $RETRY_MAX ]]; do
+    pods_running=$(eval "$CMD")
+    if [[ "$pods_running" != '0' ]]; then
+      printInfo "\"$pods_running\" pods are running on \"$namespace_filter\" with name \"$pod_filter\" exiting loop."
+      break
+    fi
+    RETRY=$(($RETRY + 1))
+    printWarn "Retry: ${RETRY}/${RETRY_MAX} - No pods are running on  \"$namespace_filter\" with name \"$pod_filter\". Wait 10s for $pod_filter PoDs to be scheduled..."
+    sleep 10
+  done
+}
+
 # shellcheck disable=SC2120
 waitForAllPods() {
   # Function to filter by Namespace, default is ALL
@@ -85,34 +113,6 @@ waitForAllPods() {
     kubectl get pods --field-selector=status.phase!=Running -A
     exit 1
   fi
-}
-
-waitForPod() {
-  # Function to filter by Namespace and POD string, default is ALL namespaces
-  # If 2 parameters then the first is Namespace the second is Pod-String
-  # If 1 parameters then Namespace == all-namespaces the first is Pod-String
-  if [[ $# -eq 2 ]]; then
-    namespace_filter="-n $1"
-    pod_filter="$2"
-  elif [[ $# -eq 1 ]]; then
-    namespace_filter="--all-namespaces"
-    pod_filter="$1"
-  fi
-  RETRY=0
-  RETRY_MAX=60
-  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
-  CMD="kubectl get pods $namespace_filter 2>&1 | grep -c -E '$pod_filter'"
-  printInfo "Verifying that pods in \"$namespace_filter\" with name \"$pod_filter\" is scheduled in a workernode "
-  while [[ $RETRY -lt $RETRY_MAX ]]; do
-    pods_running=$(eval "$CMD")
-    if [[ "$pods_running" != '0' ]]; then
-      printInfo "\"$pods_running\" pods are running on \"$namespace_filter\" with name \"$pod_filter\" exiting loop."
-      break
-    fi
-    RETRY=$(($RETRY + 1))
-    printWarn "Retry: ${RETRY}/${RETRY_MAX} - No pods are running on  \"$namespace_filter\" with name \"$pod_filter\". Wait 10s for $pod_filter PoDs to be scheduled..."
-    sleep 10
-  done
 }
 
 waitForAllReadyPods() {
@@ -406,10 +406,10 @@ deployCloudNative() {
 
     printInfo "Log capturing will be handled by the Host agent."
     # We wait for 5 seconds for the pods to be scheduled, otherwise it will mark it as passed since the pods have not been scheduled
-    sleep 5
-    waitForAllPods dynatrace
-    #if the app needs the AG or OS agent for some reason, then you'll need to wait for AG/OS to be ready, this function does that.
-    #waitForAllReadyPods dynatrace
+    waitForPod dynatrace activegate
+    
+    #FIXME: Verify dependency of AG and OS being ready.
+    waitForAllReadyPods dynatrace
   else
     printInfo "Not deploying the Dynatrace Operator, no credentials found"
   fi
@@ -451,7 +451,7 @@ uninstallDynatrace() {
 # shellcheck disable=SC2120
 dynatraceDeployOperator() {
 
-  printInfoSection "Deploying Dynatrace Operator via Helm."
+  printInfoSection "Deploying Dynatrace Operator"
   # posssibility to load functions.sh and call dynatraceDeployOperator A B C to save credentials and override
   # or just run in normal deployment
   saveReadCredentials $@
@@ -461,6 +461,7 @@ dynatraceDeployOperator() {
     # Deploy Operator
 
     deployOperatorViaHelm
+
     waitForAllPods dynatrace
 
     #FIXME: Add Ingress Nginx instrumentation and always expose in a port so all apps have RUM regardless of technology
@@ -493,6 +494,28 @@ generateDynakube(){
     
     # Create Dynakube for ApplicationMonitoring
     sed -e 's~MONITORINGMODE:~applicationMonitoring: {}:~' $CODESPACE_VSCODE_FOLDER/.devcontainer/yaml/gen/dynakube-skel.yaml > $CODESPACE_VSCODE_FOLDER/.devcontainer/yaml/gen/dynakube-applicationmonitoring.yaml
+
+}
+
+deployOperatorViaKubectl(){
+
+  printInfoSection "Deploying Operator via kubectl"
+
+  saveReadCredentials
+  API="/api"
+  DT_API_URL=$DT_TENANT$API
+  
+  # Read the actual hostname in case changed during instalation
+  CLUSTERNAME=$(hostname)
+
+  kubectl create namespace dynatrace
+
+  kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v1.5.1/kubernetes-csi.yaml
+
+  # Save Dynatrace Secret
+  kubectl -n dynatrace create secret generic dev-container --from-literal="apiToken=$DT_OPERATOR_TOKEN" --from-literal="dataIngestToken=$DT_INGEST_TOKEN"
+
+  generateDynakube
 
 }
 
@@ -555,9 +578,26 @@ deployAITravelAdvisorApp(){
 
 }
 
-exposeApp(){
-  printInfo "Exposing App in your dev.container"
-  nohup kubectl port-forward service/ai-travel-advisor 8080:8080  -n ai-travel-advisor --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
+deployTodoApp(){
+  printInfoSection "Deploying Todo App"
+
+  kubectl create ns todoapp
+
+  # Create deployment of todoApp
+  kubectl -n todoapp create deploy todoapp --image=shinojosa/todoapp:1.0.0
+
+  # Expose deployment of todoApp with a Service
+  kubectl -n todoapp expose deployment todoapp --type=NodePort --name=todoapp --port=8080 --target-port=8080
+
+  # Define the NodePort to expose the app from the Cluster
+  kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
+
+  printInfoSection "TodoApp is available via NodePort=30100"
+}
+
+exposeTodoApp(){
+  printInfo "Exposing Todo App in your dev.container"
+  nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 
 
