@@ -167,6 +167,10 @@ site/*
 **tmp**
 **/tmp/**
 
+# no env files
+.devcontainer/util/.env
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

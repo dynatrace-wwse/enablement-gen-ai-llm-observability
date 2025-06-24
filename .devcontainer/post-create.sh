@@ -1,7 +1,7 @@
 #!/bin/bash
-
 #loading functions to script
 source /workspaces/$RepositoryName/.devcontainer/util/functions.sh
+export SECONDS=0
 
 bindFunctionsInShell
 
@@ -12,7 +12,7 @@ createKindCluster
 installK9s
 
 #TODO: BeforeGoLive: uncomment this. This is only needed for professors to have the Mkdocs live in the container
-installMkdocs
+#installMkdocs
 
 # Dynatrace Credentials are read and saved as a configmap for ease of use
 #dynatraceEvalReadSaveCredentials
@@ -60,10 +60,10 @@ if [[ "$CODESPACE_NAME" == dttest-* ]]; then
     gh codespace delete --codespace "$CODESPACE_NAME" --force
 else
 
-    # Your content here
-    printInfo "Sending BizEvent to track usage of $RepositoryName"
-    #TODO: BeforeGoLive: Uncomment, this will post a BizEvent to keep track of instantiations
-    #postCodespaceTracker $RepositoryName
+    verifyCodespaceCreation
     
+    postCodespaceTracker
+  
     printInfo "Finished creating devcontainer"
+
 fi
