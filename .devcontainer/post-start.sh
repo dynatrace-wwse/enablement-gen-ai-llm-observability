@@ -12,4 +12,4 @@ source /workspaces/$RepositoryName/.devcontainer/util/functions.sh
 
 # In here you can add steps or configure things for the training
 
-printInfoSection "Your dev.container finished creating"
+printInfoSection "Your dev.container finished starting up"
