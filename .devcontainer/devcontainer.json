@@ -1,29 +1,33 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm
 {
-	"name": "Enablement on codespaces template",
-	"dockerFile": "Dockerfile",
+  "name": "Dynatrace Enablement Container",
+  // Pulling the image from the Dockerhub, runs on AMD64 and ARM64. Pulling is normally faster.
+  "image":"shinojosa/dt-enablement:v1.0",
+  /*
+  // Building the image from the Dockerfile
+  "build": {
+    "dockerfile": "Dockerfile"
+    },
+    */
+  // When running locally we pass the 'secrets' as env variables via runArgs "--env-file",".devcontainer/runlocal/.env"
+  "runArgs": ["--init", "--privileged", "--network=host"],
+  "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
+  // Entrypoint and CMD are overwritten by VSCode
+  "overrideCommand": false,
 
-	// do not change these if you want Docker in Docker support
-	"runArgs": ["--init", "--privileged", "--network=host"],
-	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
-	"overrideCommand": false,
-
-	// some base images require a specific user name
+  // some base images require a specific user name.
 	"remoteUser": "vscode",
-
-	// Install extensions
-	"customizations": {
-		"vscode": {	
-			// Set container specific settings
+  
+  "features": {},
+  "customizations": {
+    "vscode": {
+      // Set container specific settings
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh"
-			},			
-			"extensions": []
-		}
-	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+			},
+      "extensions": [ ]
+    }
+  },
+  	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		30100
 	],
@@ -31,7 +35,7 @@
 	"portsAttributes": {
 		"30100": { "label": "Application Web UI" }
 	},
-
+  // minimal CPU when running DT components and apps.
 	"hostRequirements": {
 		"cpus": 4
 	},
@@ -52,5 +56,8 @@
 		"DT_TOKEN": {
 			"description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
 	 	}
-  	}
+  	},
+  "remoteEnv": {
+    "RepositoryName": "enablement-gen-ai-llm-observability"
+  }
 }
