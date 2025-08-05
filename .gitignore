@@ -140,7 +140,6 @@ gradle-app.setting
 .project
 .classpath
 bin/
-test/
 
 
 # mkdocs renders static files in site
