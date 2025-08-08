@@ -56,8 +56,5 @@
 		"DT_TOKEN": {
 			"description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
 	 	}
-  	},
-  "remoteEnv": {
-    "RepositoryName": "enablement-gen-ai-llm-observability"
   }
 }

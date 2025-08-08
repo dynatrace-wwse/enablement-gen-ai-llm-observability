@@ -1,8 +1,7 @@
 #!/bin/bash
 #loading functions to script
 export SECONDS=0
-source /workspaces/$RepositoryName/.devcontainer/util/functions.sh
-
+source .devcontainer/util/source_framework.sh
 
 bindFunctionsInShell
 
