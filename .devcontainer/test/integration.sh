@@ -9,6 +9,10 @@ printInfoSection "Running integration Tests for the Enablement Framework"
 
 #assertRunningPod dynatrace oneagent
 
-#assertRunningPod todoapp todoapp
+assertRunningPod ai-travel-advisor ollama
+
+assertRunningPod ai-travel-advisor weaviate
+
+assertRunningPod ai-travel-advisor ai-travel-advisor
 
 assertRunningApp 30100
