@@ -17,6 +17,10 @@
   // some base images require a specific user name.
 	"remoteUser": "vscode",
   
+  "postCreateCommand": "./.devcontainer/post-create.sh",
+
+  "postStartCommand": "./.devcontainer/post-start.sh",
+  
   "features": {},
   "customizations": {
     "vscode": {
@@ -38,26 +42,17 @@
   // minimal CPU when running DT components and apps.
 	"hostRequirements": {
 		"cpus": 4
-	},
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// eg. ./init.sh or python installer.py
-	"postCreateCommand": "./.devcontainer/post-create.sh",
-
-	// Use 'postStartCommand' to run commands after the container starts.
-	"postStartCommand": "./.devcontainer/post-start.sh",
-
-	// Add recommended secrets
-	// Commented out since we are not deploying Dynatrace in the template.
-	"secrets": {
-		"DT_TENANT": {
-			"description": "eg. abc123 for live -> https://abc123.live.dynatrace.com or sprint -> https://abc123.sprint.dynatracelabs.com no apps in the URL"
-	 	},
-		"DT_TOKEN": {
-			"description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
-	 	}
-  	},
-  "remoteEnv": {
-    "RepositoryName": "enablement-gen-ai-llm-observability"
-  }
+	}
+  /*
+  // Add recommended secrets 
+  */
+  ,
+    "secrets": {
+		    "DT_TENANT": {
+			    "description": "eg. abc123 for live -> https://abc123.live.dynatrace.com or sprint -> https://abc123.sprint.dynatracelabs.com no apps in the URL"
+	 	    },
+		    "DT_TOKEN": {
+			    "description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
+	 	    }
+    }
 }

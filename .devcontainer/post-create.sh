@@ -1,8 +1,7 @@
 #!/bin/bash
 #loading functions to script
 export SECONDS=0
-source /workspaces/$RepositoryName/.devcontainer/util/functions.sh
-
+source .devcontainer/util/source_framework.sh
 
 bindFunctionsInShell
 
@@ -12,11 +11,8 @@ startKindCluster
 
 installK9s
 
-#TODO: BeforeGoLive: uncomment this. This is only needed for professors to have the Mkdocs live in the container
 #installMkdocs
 
-# Dynatrace Credentials are read and saved as a configmap for ease of use
-#dynatraceEvalReadSaveCredentials
 
 # Dynatrace Operator can be deployed automatically
 #dynatraceDeployOperator
