@@ -10,6 +10,4 @@ source .devcontainer/util/source_framework.sh
 # we want to monitor all interactions of the users in the live github pages.
 #exposeMkdocs
 
-# In here you can add steps or configure things for the training
-
 printInfoSection "Your dev.container finished starting up"
