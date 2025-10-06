@@ -48,8 +48,8 @@
   */
   ,
     "secrets": {
-		    "DT_TENANT": {
-			    "description": "eg. abc123 for live -> https://abc123.live.dynatrace.com or sprint -> https://abc123.sprint.dynatracelabs.com no apps in the URL"
+		    "DT_ENVIRONMENT": {
+			    "description": "URL to your Dynatrace Platform eg. https://abc123.apps.dynatrace.com or for sprint -> https://abc123.sprint.apps.dynatracelabs.com"
 	 	    },
 		    "DT_TOKEN": {
 			    "description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
