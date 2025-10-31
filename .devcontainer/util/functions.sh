@@ -1083,6 +1083,10 @@ deployAITravelAdvisorApp(){
 
   waitAppCanHandleRequests $PORT
 
+  waitAppCanHandleRequests $PORT
+  
+  waitAppCanHandleRequests $PORT
+
   printInfo "AI Travel Advisor is available via NodePort=$PORT"
 }
 
