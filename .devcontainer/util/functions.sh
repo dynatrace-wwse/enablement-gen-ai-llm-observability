@@ -180,21 +180,34 @@ waitForAllReadyPods() {
 }
 
 waitAppCanHandleRequests(){
-  # Function to filter by Namespace, default is ALL
-  if [[ $# -eq 1 ]]; then
+  # Function to verify app can handle requests on a given port
+  # First parameter: PORT (default: 30100)
+  # Second parameter: RETRY_MAX (default: 5)
+  # Usage examples:
+  #   waitAppCanHandleRequests          - uses default port 30100 and 5 retries
+  #   waitAppCanHandleRequests 8080     - uses port 8080 and 5 retries
+  #   waitAppCanHandleRequests 8080 10  - uses port 8080 and 10 retries
+  if [[ $# -eq 0 ]]; then
+    PORT="30100"
+    RETRY_MAX=5
+  elif [[ $# -eq 1 ]]; then
     PORT="$1"
+    RETRY_MAX=5
+  elif [[ $# -eq 2 ]]; then
+    PORT="$1"
+    RETRY_MAX="$2"
   else
     PORT="30100"
+    RETRY_MAX=5
   fi
   
   RC="500"
 
   URL=http://localhost:$PORT
   RETRY=0
-  RETRY_MAX=5
   # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
   CMD="curl --silent $URL > /dev/null"
-  printInfo "Verifying that the app can handle HTTP requests on $URL"
+  printInfo "Verifying that the app can handle HTTP requests on $URL (max retries: $RETRY_MAX)"
   while [[ $RETRY -lt $RETRY_MAX ]]; do
     RESPONSE=$(eval "$CMD")
     RC=$?
@@ -1044,12 +1057,16 @@ getNextFreeAppPort() {
 
 
 deployAITravelAdvisorApp(){
+
   printInfoSection "Deploying AI Travel Advisor App & it's LLM"
   
-  if [[ "$ARCH" != "x86_64" ]]; then
-    printWarn "This version of the AI Travel Advisor only supports AMD/x86 architectures and not ARM, exiting deployment..."
-    return 1
+  if [ -z "$DT_LLM_TOKEN" ]; then
+    printError "DT_LLM_TOKEN token is missing"
   fi
+  
+  printInfo "Evaluating credentials"
+
+  dynatraceEvalReadSaveCredentials
   
   getNextFreeAppPort true
   PORT=$(getNextFreeAppPort)
@@ -1060,7 +1077,7 @@ deployAITravelAdvisorApp(){
 
   kubectl apply -f $REPO_PATH/.devcontainer/apps/ai-travel-advisor/k8s/namespace.yaml
 
-  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal="token=$DT_TOKEN" --from-literal="endpoint=$DT_TENANT/api/v2/otlp"
+  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal="token=$DT_LLM_TOKEN" --from-literal="endpoint=$DT_TENANT/api/v2/otlp"
   
   # Start OLLAMA
   printInfo "Deploying our LLM => Ollama"
@@ -1092,7 +1109,7 @@ deployAITravelAdvisorApp(){
   # Define the NodePort to expose the app from the Cluster
   kubectl patch service ai-travel-advisor --namespace=ai-travel-advisor --type='json' --patch="[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":$PORT}]"
 
-  waitAppCanHandleRequests $PORT
+  waitAppCanHandleRequests $PORT 20
 
   printInfo "AI Travel Advisor is available via NodePort=$PORT"
 }
@@ -1449,7 +1466,7 @@ showDeployAppUsage(){
   printInfo "For undeploying an app, type -d as an extra argument                        "
   printInfo "----------------------------------------------------------------------------"
   printInfo "[#]  [c]  [ name ]             AMD     ARM                                  "
-  printInfo "[1]   a   ai-travel-advisor     +       -                                   "
+  printInfo "[1]   a   ai-travel-advisor     +       +                                   "
   printInfo "[2]   b   astroshop             +       -                                   "
   printInfo "[3]   c   bugzapper             +       +                                   "
   printInfo "[4]   d   easytrade             +       -                                   "

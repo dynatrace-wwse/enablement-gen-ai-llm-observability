@@ -51,8 +51,8 @@
 		    "DT_ENVIRONMENT": {
 			    "description": "URL to your Dynatrace Platform eg. https://abc123.apps.dynatrace.com or for sprint -> https://abc123.sprint.apps.dynatracelabs.com"
 	 	    },
-		    "DT_TOKEN": {
-			    "description": "Dynatrace API token with these permissions: Ingest metrics, Ingest logs, Ingest events, Ingest OpenTelemetry, Read metrics, Write settings"
+		    "DT_LLM_TOKEN": {
+			    "description": "Dynatrace API token with these permissions: Ingest events, Ingest logs, Ingest metrics, Ingest OpenTelemetry traces"
 	 	    }
     }
 }

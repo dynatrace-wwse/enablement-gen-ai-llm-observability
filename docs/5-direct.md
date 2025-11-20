@@ -9,7 +9,7 @@ At first, you will see a loading animation and after a few seconds, an answer li
 
 !!! Example "If you click on Advise multiple time, you will see that the answer is slightly different every time. LLMs have inherently a random nature which makes Observability important." 
 
-We saw that the response arrived after a few seconds, how can we sure that the response time is not sky rocketing? 
+We saw that the response arrived after a few seconds, how can we be sure that the response time is not sky rocketing? 
 How can be sure that the LLM answers correctly to user requests? 
 If we're using 3rd party LLMs, how can we monitor the cost associated with the requests?
 

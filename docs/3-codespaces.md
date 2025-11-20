@@ -13,7 +13,7 @@
         - As a machine type select **4-core**
     - Secrets (enter your credentials within the following variables)
         - DT_ENVIRONMENT
-        - DT_TOKEN
+        - DT_LLM_TOKEN
 
 
 ## 2. While the Codespace is set-up for you, learn powerful usecases with Dynatrace
