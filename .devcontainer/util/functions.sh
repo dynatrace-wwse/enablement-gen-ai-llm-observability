@@ -180,21 +180,34 @@ waitForAllReadyPods() {
 }
 
 waitAppCanHandleRequests(){
-  # Function to filter by Namespace, default is ALL
-  if [[ $# -eq 1 ]]; then
+  # Function to verify app can handle requests on a given port
+  # First parameter: PORT (default: 30100)
+  # Second parameter: RETRY_MAX (default: 5)
+  # Usage examples:
+  #   waitAppCanHandleRequests          - uses default port 30100 and 5 retries
+  #   waitAppCanHandleRequests 8080     - uses port 8080 and 5 retries
+  #   waitAppCanHandleRequests 8080 10  - uses port 8080 and 10 retries
+  if [[ $# -eq 0 ]]; then
+    PORT="30100"
+    RETRY_MAX=5
+  elif [[ $# -eq 1 ]]; then
     PORT="$1"
+    RETRY_MAX=5
+  elif [[ $# -eq 2 ]]; then
+    PORT="$1"
+    RETRY_MAX="$2"
   else
     PORT="30100"
+    RETRY_MAX=5
   fi
   
   RC="500"
 
   URL=http://localhost:$PORT
   RETRY=0
-  RETRY_MAX=5
   # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
   CMD="curl --silent $URL > /dev/null"
-  printInfo "Verifying that the app can handle HTTP requests on $URL"
+  printInfo "Verifying that the app can handle HTTP requests on $URL (max retries: $RETRY_MAX)"
   while [[ $RETRY -lt $RETRY_MAX ]]; do
     RESPONSE=$(eval "$CMD")
     RC=$?
@@ -1092,7 +1105,7 @@ deployAITravelAdvisorApp(){
   # Define the NodePort to expose the app from the Cluster
   kubectl patch service ai-travel-advisor --namespace=ai-travel-advisor --type='json' --patch="[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":$PORT}]"
 
-  waitAppCanHandleRequests $PORT
+  waitAppCanHandleRequests $PORT 20
 
   printInfo "AI Travel Advisor is available via NodePort=$PORT"
 }
