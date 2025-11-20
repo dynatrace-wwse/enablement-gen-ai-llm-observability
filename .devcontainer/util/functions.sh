@@ -1063,11 +1063,6 @@ deployAITravelAdvisorApp(){
   if [ -z "$DT_LLM_TOKEN" ]; then
     printError "DT_LLM_TOKEN token is missing"
   fi
-
-  if [[ "$ARCH" != "x86_64" ]]; then
-    printWarn "This version of the AI Travel Advisor only supports AMD/x86 architectures and not ARM, exiting deployment..."
-    return 1
-  fi
   
   printInfo "Evaluating credentials"
 
@@ -1471,7 +1466,7 @@ showDeployAppUsage(){
   printInfo "For undeploying an app, type -d as an extra argument                        "
   printInfo "----------------------------------------------------------------------------"
   printInfo "[#]  [c]  [ name ]             AMD     ARM                                  "
-  printInfo "[1]   a   ai-travel-advisor     +       -                                   "
+  printInfo "[1]   a   ai-travel-advisor     +       +                                   "
   printInfo "[2]   b   astroshop             +       -                                   "
   printInfo "[3]   c   bugzapper             +       +                                   "
   printInfo "[4]   d   easytrade             +       -                                   "
