@@ -1057,12 +1057,21 @@ getNextFreeAppPort() {
 
 
 deployAITravelAdvisorApp(){
+
   printInfoSection "Deploying AI Travel Advisor App & it's LLM"
   
+  if [ -z "$DT_LLM_TOKEN" ]; then
+    printError "DT_LLM_TOKEN token is missing"
+  fi
+
   if [[ "$ARCH" != "x86_64" ]]; then
     printWarn "This version of the AI Travel Advisor only supports AMD/x86 architectures and not ARM, exiting deployment..."
     return 1
   fi
+  
+  printInfo "Evaluating credentials"
+
+  dynatraceEvalReadSaveCredentials
   
   getNextFreeAppPort true
   PORT=$(getNextFreeAppPort)
@@ -1073,7 +1082,7 @@ deployAITravelAdvisorApp(){
 
   kubectl apply -f $REPO_PATH/.devcontainer/apps/ai-travel-advisor/k8s/namespace.yaml
 
-  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal="token=$DT_TOKEN" --from-literal="endpoint=$DT_TENANT/api/v2/otlp"
+  kubectl -n ai-travel-advisor create secret generic dynatrace --from-literal="token=$DT_LLM_TOKEN" --from-literal="endpoint=$DT_TENANT/api/v2/otlp"
   
   # Start OLLAMA
   printInfo "Deploying our LLM => Ollama"
