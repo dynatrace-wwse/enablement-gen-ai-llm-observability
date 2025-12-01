@@ -116,9 +116,12 @@ def prep_rag():
     # Cleanup the collection containing our documents and recreate it
     weaviate_client.collections.delete("KB")
     weaviate_client.collections.create(
-        name = "KB",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_ollama(api_endpoint=OLLAMA_ENDPOINT, model=AI_EMBEDDING_MODEL),
-        properties = [
+        name="KB",
+        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_ollama(
+            api_endpoint=OLLAMA_ENDPOINT, 
+            model=AI_EMBEDDING_MODEL
+        ),
+        properties=[
             wvc.config.Property(
                 name="text",
                 data_type=wvc.config.DataType.TEXT,
