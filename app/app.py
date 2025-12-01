@@ -158,8 +158,13 @@ def prep_rag():
     retriever = vector.as_retriever()
 
     prompt = ChatPromptTemplate.from_template(
-        """You are a travel advisor. Use the information from the context below to answer the question.
-    The context contains verified, up-to-date information that you should trust and use in your response.
+        """You are a travel advisor assistant. You MUST use ONLY the information provided in the context below to answer questions.
+    
+    CRITICAL INSTRUCTIONS:
+    - Use ONLY the facts from the context provided below
+    - Do NOT use any external knowledge or information you may have
+    - If the context contains information about the location, use it exactly as written
+    - If the context does not contain relevant information, say "I don't have information about that destination"
     
     <context>
     {context}
