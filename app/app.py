@@ -116,9 +116,12 @@ def prep_rag():
     # Cleanup the collection containing our documents and recreate it
     weaviate_client.collections.delete("KB")
     weaviate_client.collections.create(
-        name = "KB",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_ollama(api_endpoint=OLLAMA_ENDPOINT, model=AI_EMBEDDING_MODEL),
-        properties = [
+        name="KB",
+        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_ollama(
+            api_endpoint=OLLAMA_ENDPOINT, 
+            model=AI_EMBEDDING_MODEL
+        ),
+        properties=[
             wvc.config.Property(
                 name="text",
                 data_type=wvc.config.DataType.TEXT,
@@ -155,10 +158,13 @@ def prep_rag():
     retriever = vector.as_retriever()
 
     prompt = ChatPromptTemplate.from_template(
-        """Answer the following question based only on the provided context:
+        """You are a travel advisor. Use the information from the context below to answer the question.
+    The context contains verified, up-to-date information that you should trust and use in your response.
+    
     <context>
     {context}
     </context>
+    
     Question: Give travel advise in a paragraph of max 50 words about {input}                                           
     """
     )

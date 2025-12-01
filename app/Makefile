@@ -1,5 +1,5 @@
 IMAGE= shinojosa/ai-travel-advisor
-VERSION = v1.0.0
+VERSION = v1.0.1
 
 build:
 	docker build -t $(IMAGE):$(VERSION) .
