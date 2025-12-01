@@ -118,8 +118,8 @@ def prep_rag():
     weaviate_client.collections.create(
         name="KB",
         vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_ollama(
-            api_endpoint=OLLAMA_ENDPOINT, 
-            model=AI_EMBEDDING_MODEL
+            api_endpoint=OLLAMA_ENDPOINT,
+            model=AI_EMBEDDING_MODEL,
         ),
         properties=[
             wvc.config.Property(
