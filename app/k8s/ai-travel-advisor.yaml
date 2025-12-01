@@ -28,7 +28,7 @@ spec:
               value: "weaviate.ai-travel-advisor.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: "delta"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: secrets
               readOnly: true
