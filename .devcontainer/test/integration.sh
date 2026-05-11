@@ -10,5 +10,5 @@ assertRunningPod ai-travel-advisor weaviate
 
 assertRunningPod ai-travel-advisor ai-travel-advisor
 
-assertRunningApp 30100
+assertRunningApp ai-travel-advisor
 
