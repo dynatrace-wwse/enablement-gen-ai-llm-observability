@@ -758,14 +758,14 @@ document.addEventListener('DOMContentLoaded', function() {
 </ul>
 </div>
 <h2 id="2-while-the-codespace-is-set-up-for-you-learn-powerful-usecases-with-dynatrace">2. While the Codespace is set-up for you, learn powerful usecases with Dynatrace<a class="headerlink" href="#2-while-the-codespace-is-set-up-for-you-learn-powerful-usecases-with-dynatrace" title="Permanent link">#</a></h2>
-<p>We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes (<a href="https://kind.sigs.k8s.io/" target="_blank">kind</a>) cluster monitored by Dynatrace will be configured and in it a sample AI application, the AI Travel Advisor app will be deployed. To make your experience best, we are also installing and configuring tools like:</p>
+<p>We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes (<a href="https://k3d.io/" target="_blank">k3d</a>) cluster monitored by Dynatrace will be configured and in it a sample AI application, the AI Travel Advisor app will be deployed. To make your experience best, we are also installing and configuring tools like:</p>
 <p><strong>k9s kubectl helm node jq python3 gh</strong></p>
 <p><img alt="Codespaces installing" src="../img/codespaces_installing.png" /></p>
 <h2 id="3-explore-what-has-been-deployed">3. Explore what has been deployed<a class="headerlink" href="#3-explore-what-has-been-deployed" title="Permanent link">#</a></h2>
 <p>Your Codespace has now deployed the following resources:</p>
 <ul>
 <li>
-<p>A local Kubernetes (<a href="https://kind.sigs.k8s.io/" target="_blank">kind</a>) cluster monitored by Dynatrace, with some pre-deployed apps
+<p>A local Kubernetes (<a href="https://k3d.io/" target="_blank">k3d</a>) cluster monitored by Dynatrace, with some pre-deployed apps
   that will be used later in the demo.</p>
 </li>
 <li>
@@ -782,10 +782,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>The client <code>kubectl</code> and <code>k9s</code>are configured so you can navigate in your local Kubernetes like butter. 
 <img alt="k9s" src="../img/k9s.png" /></p>
 <h3 id="exposing-the-app-to-the-public">Exposing the app to the public<a class="headerlink" href="#exposing-the-app-to-the-public" title="Permanent link">#</a></h3>
-<p>The app AI Travel Advisor is being exposed in the devcontainer to your localhost via Nodeport. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.</p>
+<p>The AI Travel Advisor app is accessible via the nginx ingress controller. The URL is shown in the greeting — run <code>printGreeting</code> to display it. You can also make endpoints publicly accessible from VS Code's Ports panel.</p>
 <h2 id="5-troubleshooting">5. Troubleshooting<a class="headerlink" href="#5-troubleshooting" title="Permanent link">#</a></h2>
 <h3 id="exposing-the-app">Exposing the App<a class="headerlink" href="#exposing-the-app" title="Permanent link">#</a></h3>
-<p>The AI Travel Advisor app is being exposed via NodePort to the Kubernetes Workernode port 30100. You can easily see what is being exposed by typing the function <code>showOpenPorts</code> </p>
+<p>The AI Travel Advisor app is accessible via the nginx ingress controller. The URL is shown in the greeting — run <code>printGreeting</code> in the terminal to display it. You can see all exposed ports by typing <code>showOpenPorts</code>.</p>
 <div class="highlight"><pre><span></span><code>showOpenPorts<span class="o">(){</span>
 <span class="w">  </span>sudo<span class="w"> </span>netstat<span class="w"> </span>-tulnp
 <span class="o">}</span>
