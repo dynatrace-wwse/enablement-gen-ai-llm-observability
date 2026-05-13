@@ -17,7 +17,7 @@
 
 
 ## 2. While the Codespace is set-up for you, learn powerful usecases with Dynatrace
-We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes ([kind](https://kind.sigs.k8s.io/){target="_blank"}) cluster monitored by Dynatrace will be configured and in it a sample AI application, the AI Travel Advisor app will be deployed. To make your experience best, we are also installing and configuring tools like:
+We know your time is very valuable. This codespace takes around 6 minutes to be fully operational. A local Kubernetes ([k3d](https://k3d.io/){target="_blank"}) cluster monitored by Dynatrace will be configured and in it a sample AI application, the AI Travel Advisor app will be deployed. To make your experience best, we are also installing and configuring tools like:
 
 **k9s kubectl helm node jq python3 gh**
 
@@ -27,7 +27,7 @@ We know your time is very valuable. This codespace takes around 6 minutes to be 
 
 Your Codespace has now deployed the following resources:
 
-- A local Kubernetes ([kind](https://kind.sigs.k8s.io/){target="_blank"}) cluster monitored by Dynatrace, with some pre-deployed apps
+- A local Kubernetes ([k3d](https://k3d.io/){target="_blank"}) cluster monitored by Dynatrace, with some pre-deployed apps
   that will be used later in the demo.
 
 - After a couple of minutes, you'll see this screen in your codespaces terminal. It contains the links to the local expose labguide and the UI of the application which we will be doing our Hands-On training.
@@ -50,14 +50,14 @@ The client `kubectl` and `k9s`are configured so you can navigate in your local K
 ![k9s](img/k9s.png)
 
 ### Exposing the app to the public
-The app AI Travel Advisor is being exposed in the devcontainer to your localhost via Nodeport. If you want to make the endpoints public accesible, just go to the ports section in VsCode, right click on them and change the visibility to public.
+The AI Travel Advisor app is accessible via the nginx ingress controller. The URL is shown in the greeting — run `printGreeting` to display it. You can also make endpoints publicly accessible from VS Code's Ports panel.
 
 
 ## 5. Troubleshooting
 
 
 ### Exposing the App
-The AI Travel Advisor app is being exposed via NodePort to the Kubernetes Workernode port 30100. You can easily see what is being exposed by typing the function `showOpenPorts` 
+The AI Travel Advisor app is accessible via the nginx ingress controller. The URL is shown in the greeting — run `printGreeting` in the terminal to display it. You can see all exposed ports by typing `showOpenPorts`.
 
 ```bash
 showOpenPorts(){
