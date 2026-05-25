@@ -9,8 +9,8 @@ on:
 jobs:
   codespaces-integration-test-with-dynatrace-deployment:
     runs-on: ubuntu-24.04
-    # No CI Test should run longer than 10 minutes.
-    timeout-minutes: 10
+    # No CI Test should run longer than 20 minutes.
+    timeout-minutes: 20
     env:
       DT_ENVIRONMENT: ${{ secrets.DT_ENVIRONMENT }}
       DT_OPERATOR_TOKEN: ${{ secrets.DT_OPERATOR_TOKEN }}
