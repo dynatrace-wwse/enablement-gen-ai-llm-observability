@@ -1,5 +1,4 @@
 # Direct Chat
---8<-- "snippets/5-direct.js"
 
 In this mode, we directly send our prompt to Ollama to generate a travel raccomendation.
 Let's use `Sydney` as city to test the AI Travel raccomendation and press `Advise`.

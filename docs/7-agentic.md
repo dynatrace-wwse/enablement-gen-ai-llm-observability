@@ -1,5 +1,4 @@
 # Agentic AI
---8<-- "snippets/7-agentic.js"
 
 Agentic AI is a novel technique where AI systems act independently and proactively, aiming to achieve specific goals without direct human intervention.
 Integrating these systems into digital services poses challenges due to their non-deterministic communication, which can create unpredictable behavior.

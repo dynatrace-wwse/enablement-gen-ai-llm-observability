@@ -1,5 +1,4 @@
 # Content
---8<-- "snippets/4-content.js"
 
 ## What is AI and LLM observability?
 AI and Large Language Model (LLM) observability provides visibility into all layers AI-powered applications.
