@@ -561,12 +561,6 @@
 
 
 <h1 id="direct-chat">Direct Chat<a class="headerlink" href="#direct-chat" title="Permanent link">#</a></h1>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  dynatrace.sendBizEvent('page_load', {"page": "5. Direct Chat"});
-});
-</script>
-
 <p>In this mode, we directly send our prompt to Ollama to generate a travel raccomendation.
 Let's use <code>Sydney</code> as city to test the AI Travel raccomendation and press <code>Advise</code>.
 At first, you will see a loading animation and after a few seconds, an answer like the following one:</p>
@@ -700,8 +694,19 @@ In the next section, we're exploring a common approach to overcome this limitati
     <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "search.share"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof dynatrace !== 'undefined') {
+        dynatrace.sendBizEvent('page_load', {'page': "5. Direct Chat"});
+      }
+    });
+  </script>
+  
+
   </body>
 </html>

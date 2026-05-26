@@ -681,12 +681,6 @@
 
 
 <h1 id="content">Content<a class="headerlink" href="#content" title="Permanent link">#</a></h1>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  dynatrace.sendBizEvent('page_load', {"page": "4. Content"});
-});
-</script>
-
 <h2 id="what-is-ai-and-llm-observability">What is AI and LLM observability?<a class="headerlink" href="#what-is-ai-and-llm-observability" title="Permanent link">#</a></h2>
 <p>AI and Large Language Model (LLM) observability provides visibility into all layers AI-powered applications.
 This approach covers the complete AI stack, from foundational models and vector databases to RAG orchestration frameworks, ensuring visibility across every layer of modern AI applications. 
@@ -838,8 +832,19 @@ To find the available OTLP endpoints supported by Dynatrace, please refer to <a 
     <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "search.share"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof dynatrace !== 'undefined') {
+        dynatrace.sendBizEvent('page_load', {'page': "4. Content"});
+      }
+    });
+  </script>
+  
+
   </body>
 </html>
