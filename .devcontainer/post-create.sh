@@ -5,9 +5,13 @@ source .devcontainer/util/source_framework.sh
 
 setUpTerminal
 
-startKindCluster
+startK3dCluster
 
 installK9s
+
+# k3d uses "local-path" StorageClass; framework cache may still have "standard"
+sed -i 's/storageClassName: "standard"/storageClassName: "local-path"/g' \
+  "${FRAMEWORK_APPS_PATH}/ai-travel-advisor/k8s/weaviate.yaml" 2>/dev/null || true
 
 deployAITravelAdvisorApp
 
