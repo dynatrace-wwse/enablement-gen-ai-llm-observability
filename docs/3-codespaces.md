@@ -1,4 +1,3 @@
---8<-- "snippets/3-codespaces.js"
 
 --8<-- "snippets/dt-enablement.md"
 

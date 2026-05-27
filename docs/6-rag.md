@@ -1,5 +1,4 @@
 # Retrieval-Augmented Generation (RAG) 
---8<-- "snippets/6-rag.js"
 
 Retrieval-Augmented Generation (RAG) is a technique that provides additional context to LLMs to have additional information to carry out a solution to the prompt they receive.
 In our AI Travel Advisor App, the RAG pipeline is built using LangChain. The retrieval step reaches out to Weaviate to query for documents relevant to the prompt in input.
