@@ -1,3 +1,12 @@
+---
+description: Observe an AI application built on Ollama, Weaviate and LangChain with Dynatrace AI and LLM Observability. Trace RAG and agentic pipelines from prompt to response and pinpoint prompt latency and model-level issues.
+tags:
+  - classic
+  - ai
+  - llm
+  - tracing
+---
+
 !!! warning "Not yet migrated to the Dynatrace Enablement App"
     This training has not been migrated to a fully immersive, interactive and self-service training.
     Questions or feedback? Reach out to the Center of Excellence Enablement Team via
